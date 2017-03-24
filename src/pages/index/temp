@@ -1,0 +1,103 @@
+<template>
+  <div class="login">
+    <div class="logo-large">
+      <img src="../../assets/logo.png" alt=""/>
+      <h1>兼职圈 靠自己</h1>
+    </div>
+    <div class="login-form">
+      <input class="form-input" placeholder="请输入手机号码" type="text" name="phone"/><br/>
+      <button @click="checkUser()" name="button">下一步</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'login',
+  data () {
+    return {}
+  },
+  methods: {
+    checkUser(){
+      let [phonePasswd,passwd,username] = [document.getElementsByClassName('phone-passwd')[0],document.getElementsByClassName('form-input')[1],document.getElementsByClassName('form-input')[0]];
+
+      if(!(/^1[34578]\d{9}$/.test(username.value))){
+        alert('请输入正确的手机号码');
+      } else {
+
+      }
+    }
+  }
+}
+</script>
+
+<style>
+.hidden{
+  display: none;
+}
+.login{
+  width: 75vw;
+  margin-top: 5rem;
+}
+.login-toggle{
+  font-size: 1rem;
+  font-weight: lighter;
+  text-decoration: underline;
+  margin-top: 5rem;
+}
+.logo-large{
+  width: 7rem;
+  margin: 1rem auto;
+}
+.logo-large>img{
+  width: 100%;
+}
+.logo-large>h1{
+  font-size: 1rem;
+  font-weight: lighter;
+}
+.login-form{
+  width: 100%;
+}
+.form-input{
+  margin: 0.5rem auto;
+  width: 11rem;
+  height: 1.25rem;
+  border: 1px grey solid;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+}
+.login-form>button{
+  background: #ff3300;
+  width: 11rem;
+  height: 2rem;
+  line-height: 1.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 0.25rem;
+  color: white;
+  margin-top: 1rem;
+}
+.phone-passwd>button{
+  background: #3399cc;
+  width: 5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 0.25rem;
+  color: white;
+}
+.phone-passwd{
+  height: 1.5em;
+  line-height: 1.5rem;
+}
+.phone-passwd>input{
+  width: 5.5rem;
+  margin-right: 0.5rem;
+  height: 1.5rem;
+  border: 1px grey solid;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+}
+</style>
