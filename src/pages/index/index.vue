@@ -28,6 +28,7 @@ export default {
       } else {
         axios.post('auth/isRegistered?phonenum='+username.value,{'phonenum':''})
         .then(function (response) {
+          console.log(response);
             if(response.msg === 'TURE'){
               location.hash='#/login'
             } else {
