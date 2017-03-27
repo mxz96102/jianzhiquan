@@ -1,28 +1,12 @@
 <template>
   <div class="job-list">
     <ul>
-      <li>
+      <li v-for="job in jobs">
        <div class="job-list-title">
-        这是一个标题
+        {{job.title}}
       </div>
        <div class="job-list-state">
-        抢单时间：2016.09.09 22:23 &nbsp; &nbsp; <span>正在兼职</span>
-       </div>
-      </li>
-      <li>
-       <div class="job-list-title">
-        这是一个标题
-      </div>
-       <div class="job-list-state">
-        抢单时间：2016.09.09 22:23 &nbsp; &nbsp; <span>正在兼职</span>
-       </div>
-      </li>
-      <li>
-       <div class="job-list-title">
-        这是一个标题
-      </div>
-       <div class="job-list-state">
-        抢单时间：2016.09.09 22:23 &nbsp; &nbsp; <span>正在兼职</span>
+        抢单时间：{{job.time}} &nbsp; &nbsp; <span>{{job.state}}</span>
        </div>
       </li>
     </ul>
@@ -32,10 +16,14 @@
 
 <script>
 import Navbar from '../../components/navbar'
+import axios from '@/axios'
+
 export default {
   name: 'jobList',
   data () {
-    return {}
+    return {
+      jobs : [{title:"xxx",time:"2017-1-2",state:"正在兼职"},{title:"xxx",time:"2017-1-2",state:"正在兼职"},{title:"xxx",time:"2017-1-2",state:"正在兼职"}]
+    }
   },
   components: {
     'navbar': Navbar

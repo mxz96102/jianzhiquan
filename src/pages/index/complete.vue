@@ -13,27 +13,28 @@
     <div class="step-one hidden">
       <h1>很高兴认识你</h1>
       <div class="complete-form">
-        <label for="name">姓名</label> <input type="text" name="name" value=""><br/>
-        <label for="gender">性别</label> <select name="gender" value=""><option value="1">帅气boy</option><option value="0">漂亮girl</option></select><br/>
-        <label for="qq">QQ号</label> <input type="text" name="qq" value=""><br/>
+        <label >姓名</label> <input type="text" name="name" value=""><br/>
+        <label >性别</label> <select name="gender" value=""><option value="1">帅气boy</option><option value="0">漂亮girl</option></select><br/>
+        <label>QQ号</label> <input type="text" name="qq" value=""><br/>
       </div>
       <button @click="toTwo" type="button">下一步</button>
     </div>
 
     <div class="step-two hidden">
       <div class="complete-form">
-        <label for="college">学院</label> <select name="college" value=""><option value="1">xx学院</option><option value="0">xxx学院</option></select><br/>
-        <label for="grade">年级</label> <select name="grade" value=""><option value="1">14</option><option value="0">15</option></select><br/>
-        <label for="class">班级</label> <input type="text" name="class" value=""><br/>
-        <label for="dormitory">宿舍</label> <select name="dormitory" value=""><option value="1">韵苑1栋</option><option value="0">韵苑2栋</option></select><br/>
+        <label >学院</label> <select name="college" value=""><option value="1">xx学院</option><option value="0">xxx学院</option></select><br/>
+        <label >年级</label> <select name="grade" value=""><option value="1">14</option><option value="0">15</option></select><br/>
+        <label >班级</label> <input type="text" name="class" value=""><br/>
+        <label >宿舍</label> <select name="dormitory" value=""><option value="1">韵苑1栋</option><option value="0">韵苑2栋</option></select><br/>
       </div>
       <button @click="toThree" type="button">下一步</button>
     </div>
 
-    <div class="step-three hidden">
-      <h1>兼职意向调查</h1>
+<!--    <div class="step-three hidden">
+          <h1>兼职意向调查</h1>
+          </div>-->
       <button @click="toEnd" type="button">下一步</button>
-    </div>
+
 
   </div>
 </template>

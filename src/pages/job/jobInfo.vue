@@ -28,10 +28,14 @@
 </template>
 
 <script>
+import axios from '@/axios'
+
 export default {
   name: 'jobInfo',
   data () {
-    return {}
+    return {
+      job:{}
+    }
   },
   methods: {
     applyJob(){

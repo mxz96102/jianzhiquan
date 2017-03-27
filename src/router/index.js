@@ -6,6 +6,8 @@ import Register from '@/pages/index/register'
 import Login from '@/pages/index/login'
 import Complete from '@/pages/index/complete'
 
+import Center from '@/pages/user/Center/Center'
+
 import JobInfo from '@/pages/job/jobInfo'
 import JobList from '@/pages/job/joblist'
 
@@ -59,6 +61,10 @@ export default new Router({
       path: '/class/info',
       name: 'classInfo',
       component: ClassInfo
+    },{
+      path: '/center',
+      name: 'center',
+      component: Center
     }
   ]
 })

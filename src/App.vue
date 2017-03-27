@@ -13,7 +13,7 @@ export default {
 
 <style>
 html,body{
-  min-width: 100vw;
+  width: 100vw;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -37,6 +37,7 @@ html,body{
   right: 0;
   left: 0;
   margin: auto;
-  height: 100vh
+  height: 100%;
+  width: 100%;
 }
 </style>

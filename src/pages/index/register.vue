@@ -10,7 +10,9 @@
       <div class="register-complete hidden">
         <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
         <select class="form-input" name="">
-          <option value="">华中科技大学</option>
+          <option value="1">华中科技大学</option>
+          <option v-for="school in schoolList" :value="school.value">{{school.name}}</option>
+
         </select>
       </div>
       <div class="phone-passwd">
@@ -23,11 +25,19 @@
 
 <script>
 import axios from '@/axios'
+let flag = true;
 
 export default {
   name: 'register',
   data () {
-    return {}
+    let schoolList = [{
+      name : "xxx",
+      value : "2"
+    }];
+
+    return {
+      schoolList : schoolList
+    }
   },
   methods: {
     phoneCount(){
@@ -64,7 +74,7 @@ export default {
         compForm.className = 'register-complete';
         phonePasswd.className += ' hidden';
 
-
+        flag = false;
       };
 
       if(!(/^1[34578]\d{9}$/.test(username.value))){
@@ -72,23 +82,18 @@ export default {
         return;
       }
 
-      if(!!phonePasswd.getElementsByTagName('input')[0].value){
+      if(flag){
+        if(!!phonePasswd.getElementsByTagName('input')[0].value){
         //login here
-        complete();
+          complete();
+        } else {
+          alert('请输入验证码');
+        }
       } else {
-        alert('请输入验证码');
-      }
-    },
-    register(){
-      let [passwd,username] = [document.getElementsByClassName('form-input')[1],document.getElementsByClassName('form-input')[0]];
+        if(passwd.value.length > 9){
+          alert('密码长度最少是9')
+        }
 
-      if(!(/^1[34578]\d{9}$/.test(username.value))){
-        alert('请输入正确的手机号码');
-        return;
-      }
-
-      if(passwd.value.length > 9){
-        alert('密码长度最少是9')
       }
     }
   }
