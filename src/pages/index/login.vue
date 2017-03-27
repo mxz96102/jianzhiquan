@@ -70,12 +70,26 @@ export default {
         if(passwd.className === 'form-input'){
           if(!!passwd.value){
             //login here
+            axios.post('auth/login',{'phonenum':username.value,'credential':passwd.value})
+              .then(function (response) {
+                let res = response.data;
+                if(res.msg === 'SUCCESS'){
+                  location.hash='#/center'
+                } else {
+                  alert("请检查手机号和密码")
+                }
+              })
+              .catch(function (error) {
+                alert('通信错误');
+                console.log(error)
+              });
           } else {
             alert('请输入密码');
           }
         } else {
           if(!!phonePasswd.value){
             //login here
+
           } else {
             alert('请输入验证码');
           }
