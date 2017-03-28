@@ -5,9 +5,9 @@
           <img src="../../../assets/logo.png" alt="">
       </div>
       <div class="center-info">
-          <h1 class="center-name">{{username}}</h1>
-          <p>学校：{{school}}</p>
-          <p>手机号：{{phonenum}}</p>
+          <h1 class="center-name">{{result.username}}</h1>
+          <p>学校：{{result.school}}</p>
+          <p>手机号：{{result.phonenum}}</p>
       </div>
     </div>
     <ul class="center-list">
@@ -25,24 +25,25 @@ export default {
   data () {
     let __this = this;
 
-    axios.get("user/userInfo")
+    axios.post("user/userInfo")
       .then((res)=>{
         console.log(res);
         if(res.data.code === '401'){
           alert('请登录')
-          location.hash = '/'
+          //location.hash = '/'
         }
-        [__this.username,__this.phonenum,__this.school]
-
+        __this.result = res.data.reslut;
       })
       .catch(function (error) {
 
       });
 
     return {
-      username: "Loading",
-      phonenum:"",
-      school:""
+      result:{
+        username:"Loading",
+        phonenum:"",
+        school:""
+      }
     }
   }
 }
