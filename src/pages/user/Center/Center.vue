@@ -5,8 +5,9 @@
           <img src="../../../assets/logo.png" alt="">
       </div>
       <div class="center-info">
-          <p>用户名：</p>
-          <p>手机号：</p>
+          <h1 class="center-name">{{username}}</h1>
+          <p>学校：{{school}}</p>
+          <p>手机号：{{phonenum}}</p>
       </div>
     </div>
     <ul class="center-list">
@@ -18,10 +19,31 @@
 </template>
 
 <script>
+import axios from '@/axios'
 export default {
   name: '',
   data () {
-    return {}
+    let __this = this;
+
+    axios.get("user/userInfo")
+      .then((res)=>{
+        console.log(res);
+        if(res.data.code === '401'){
+          alert('请登录')
+          location.hash = '/'
+        }
+        [__this.username,__this.phonenum,__this.school]
+
+      })
+      .catch(function (error) {
+
+      });
+
+    return {
+      username: "Loading",
+      phonenum:"",
+      school:""
+    }
   }
 }
 </script>

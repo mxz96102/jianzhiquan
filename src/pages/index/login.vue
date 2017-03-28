@@ -72,7 +72,7 @@ export default {
         if(passwd.className === 'form-input'){
           if(!!passwd.value){
             //login here
-            axios.post('auth/login',{'phonenum':username.value,'credential':passwd.value})
+            axios.get('auth/login?'+'phonenum='+username.value+'&credential='+passwd.value,{})
               .then(function (response) {
                 let res = response.data;
                 if(res.msg === 'SUCCESS'){

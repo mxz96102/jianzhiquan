@@ -26,7 +26,7 @@ export default {
       if(!(/^1[34578]\d{9}$/.test(username.value))){
         alert('请输入正确的手机号码');
       } else {
-        axios.post('auth/isRegistered?phonenum='+username.value,{'phonenum':''})
+        axios.get('auth/isRegistered?phonenum='+username.value,{'phonenum':''})
         .then(function (response) {
           let res = response.data;
             if(res.msg === 'TURE'){
