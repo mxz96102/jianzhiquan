@@ -1,12 +1,12 @@
 <template>
   <div class="navbar">
-    <div class="navbar-item">
-      <i class="fa fa-send"></i>我的兼职
+    <div @click="()=>location.hash='#/my/job/list'"  class="navbar-item">
+      <i class="fa fa-send" ></i>我的兼职
     </div>
-    <div class="navbar-item">
+    <div @click="()=>location.hash='#/job/list'"  class="navbar-item">
       <i class="fa fa-bullhorn"></i>发现兼职
     </div>
-    <div class="navbar-item">
+    <div  @click="()=>location.hash='#/center'" class="navbar-item">
       <i class="fa fa-user"></i>个人中心
     </div>
   </div>
@@ -18,7 +18,9 @@ import 'font-awesome/css/font-awesome.min.css'
 export default {
   name: 'navbar',
   data () {
-    return {}
+    return {
+      location : window.location
+    }
   }
 }
 </script>

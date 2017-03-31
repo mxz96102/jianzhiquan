@@ -3,10 +3,10 @@
     <ul>
       <li v-for="job in jobs">
        <div class="job-list-title">
-        {{job.title}}
+        {{job.jobname}}
       </div>
        <div class="job-list-state">
-        抢单时间：{{job.time}} &nbsp; &nbsp; <span>{{job.state}}</span>
+        时间：{{job.time}} &nbsp; &nbsp; <span>{{job.salary}}</span>
        </div>
       </li>
     </ul>
@@ -21,8 +21,20 @@ import axios from '@/axios'
 export default {
   name: 'jobList',
   data () {
+    axios.get("/job/getAvailableJob")
+      .then(function (response) {
+
+        if(res.data.code === '401'){
+          alert('请登录')
+          //location.hash = '/'
+        } else
+          __this.jobs = res.data.result;
+      })
+      .catch(function (error) {
+        alert("通信错误")
+      })
     return {
-      jobs : [{title:"xxx",time:"2017-1-2",state:"正在兼职"},{title:"xxx",time:"2017-1-2",state:"正在兼职"},{title:"xxx",time:"2017-1-2",state:"正在兼职"}]
+      jobs : []
     }
   },
   components: {

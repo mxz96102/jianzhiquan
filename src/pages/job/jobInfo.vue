@@ -2,25 +2,25 @@
   <div class="job-info">
     <ul class="job-info-list">
       <li>
-        <div class="job-info-title"><div class="job-label">种类</div></div><div class="job-title job-info-content">工作名称</div>
+        <div class="job-info-title"><div class="job-label">兼职</div></div><div class="job-title job-info-content">{{job.jobname}}</div>
       </li>
       <li>
-        <div class="job-info-title">工作日期</div><div class="job-info-content">从2018-01-01到2018-02-01</div>
+        <div class="job-info-title">工作日期</div><div class="job-info-content">从{{job.fromtime}}到{{job.untiltime}}</div>
       </li>
       <li>
-        <div class="job-info-title">兼职时段</div><div class="job-info-content">不限时间</div>
+        <div class="job-info-title">兼职时段</div><div class="job-info-content">{{job.time}}</div>
       </li>
       <li>
-        <div class="job-info-title">工作地点</div><div class="job-info-content">校内</div>
+        <div class="job-info-title">工作地点</div><div class="job-info-content">{{job.place}}</div>
       </li>
       <li>
-        <div class="job-info-title">招聘人数</div><div class="job-info-content">78/100人</div>
+        <div class="job-info-title">招聘人数</div><div class="job-info-content">{{job.workernummax}}人</div>
       </li>
       <li>
-        <div class="job-info-title">工作任务</div><div class="job-info-content">这里<br/>xxxx<br/>xxx</div>
+        <div class="job-info-title">工作任务</div><div class="job-info-content">{{job.description}}</div>
       </li>
       <li>
-        <div class="job-info-title">工作要求</div><div class="job-info-content">这里<br/>xxxx<br/>xxx<br/>sss<br/></div>
+        <div class="job-info-title">工作要求</div><div class="job-info-content">{{job.request}}</div>
       </li>
     </ul>
     <button @click="applyJob()" name="button">马上申请兼职</button>
@@ -31,15 +31,42 @@
 import axios from '@/axios'
 
 export default {
-  name: 'jobInfo',
+  name: 'myjobInfo',
   data () {
+    let __this = this;
+
+    axios.get("/job/jobInfo?id="+$route.params.id)
+      .then(function (response) {
+
+        if(res.data.code === '401'){
+          alert('请登录')
+          //location.hash = '/'
+        } else
+          __this.job = res.data.result;
+      })
+      .catch(function (error) {
+        alert("通信错误")
+      })
+
     return {
       job:{}
     }
   },
   methods: {
     applyJob(){
-
+      axios.get("job/apply?id="+$route.params.id)
+        .then(function (response) {
+          if(res.data.code === '401'){
+            alert('请登录')
+            //location.hash = '/'
+          } else if(res.data.msg === 'SUCCESS'){
+            alert('申请成功');
+          } else
+            alert('申请失败，请尝试刷新后申请')
+        })
+        .catch(function (error) {
+          alert("通信错误")
+        })
     },
   }
 }

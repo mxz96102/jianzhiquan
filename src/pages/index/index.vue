@@ -29,7 +29,7 @@ export default {
         axios.get('auth/isRegistered?phonenum='+username.value,{'phonenum':''})
         .then(function (response) {
           let res = response.data;
-            if(res.msg === 'TURE'){
+            if(res.msg === 'TRUE'){
               location.hash='#/login'
             } else {
               location.hash='#/register'

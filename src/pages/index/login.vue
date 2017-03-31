@@ -8,7 +8,7 @@
       <input class="form-input" placeholder="请输入手机号码" type="text" name="phone"/><br/>
       <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
       <div class="phone-passwd hidden">
-        <input type="text" name="" value=""> <button @click="phoneCount()" name="button">获取验证码</button><br/>
+        <input type="text" class="phone-passwd-input" name="" value=""> <button @click="phoneCount()" name="button">获取验证码</button><br/>
       </div>
       <button @click="loginUser()" name="button">下一步</button>
     </div>
@@ -60,6 +60,7 @@ export default {
           }
         }
         //Sent phone request here
+        axios.get("/auth/code?phonenum="+username.value)
         counter();
       }
     },
@@ -89,9 +90,21 @@ export default {
             alert('请输入密码');
           }
         } else {
-          if(!!phonePasswd.value){
+          if(!!document.getElementsByClassName('phone-passwd-input')[0].value){
             //login here
-
+            axios.get('auth/login?'+'phonenum='+username.value+'&code='+document.getElementsByClassName('phone-passwd-input')[0].value,{})
+              .then(function (response) {
+                let res = response.data;
+                if(res.msg === 'SUCCESS'){
+                  location.hash='#/center'
+                } else {
+                  alert("请检查手机号和验证码")
+                }
+              })
+              .catch(function (error) {
+                alert('通信错误');
+                console.log(error)
+              });
           } else {
             alert('请输入验证码');
           }

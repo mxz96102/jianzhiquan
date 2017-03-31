@@ -11,6 +11,9 @@ import Center from '@/pages/user/Center/Center'
 import JobInfo from '@/pages/job/jobInfo'
 import JobList from '@/pages/job/joblist'
 
+import MyJobInfo from '@/pages/user/Myjob/MyJobInfo'
+import MyJobList from '@/pages/user/Myjob/MyJobList'
+
 import Balance from '@/pages/user/Center/Balance/Balance'
 import JobManage from '@/pages/user/Center/JobManage'
 
@@ -38,9 +41,17 @@ export default new Router({
       name: 'complete',
       component: Complete
     },{
-      path: '/job/info/:jobId',
+      path: '/job/info/:id',
       name: 'jobInfo',
       component: JobInfo
+    },{
+      path: '/my/job/list',
+      name: 'myjobList',
+      component: MyJobList
+    },{
+      path: '/my/job/info/:id',
+      name: 'myjobInfo',
+      component: MyJobInfo
     },{
       path: '/job/list',
       name: 'jobList',

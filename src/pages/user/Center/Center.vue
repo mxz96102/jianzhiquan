@@ -12,8 +12,15 @@
     </div>
     <ul class="center-list">
       <li>
-        钱包余额 <span class="center-list-im">359</span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
+        钱包余额 <span class="center-list-im"></span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
       </li>
+        <li v-if="auth == true">
+            兼职管理 <span class="center-list-im"></span><span class="center-list-less">人员/工作管理</span><i class="fa fa-angle-right"></i>
+        </li>
+        <li  v-if="auth == true">
+            班级管理 <span class="center-list-im"></span><span class="center-list-less">销售/班级管理</span><i class="fa fa-angle-right"></i>
+        </li>
+
     </ul>
   </div>
 </template>
@@ -22,6 +29,19 @@
 import axios from '@/axios'
 export default {
   name: '',
+  beforeCreate(){
+    axios.get('/user/checkUserInfo')
+      .then((res)=>{
+        console.log(res);
+        if(res.data.msg === 'FALSE'){
+          alert('请完善信息')
+          location.hash = '/complete'
+        }
+      })
+      .catch(function (error) {
+        alert("通信错误");
+      });
+  },
   data () {
     let __this = this;
 
@@ -31,14 +51,15 @@ export default {
         if(res.data.code === '401'){
           alert('请登录')
           //location.hash = '/'
-        }
-        __this.result = res.data.reslut;
+        }else
+            __this.result = res.data.reslut;
       })
       .catch(function (error) {
-
+        alert("通信错误")
       });
 
     return {
+      auth: false,
       result:{
         username:"Loading",
         phonenum:"",

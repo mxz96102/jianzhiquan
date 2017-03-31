@@ -14,7 +14,7 @@
       <h1>很高兴认识你</h1>
       <div class="complete-form">
         <label >姓名</label> <input type="text" name="name" value=""><br/>
-        <label >性别</label> <select name="gender" value=""><option value="1">帅气boy</option><option value="0">漂亮girl</option></select><br/>
+        <label >性别</label> <select name="gender" value=""><option value="男">帅气boy</option><option value="女">漂亮girl</option></select><br/>
         <label>QQ号</label> <input type="text" name="qq" value=""><br/>
       </div>
       <button @click="toTwo" type="button">下一步</button>
@@ -22,10 +22,10 @@
 
     <div class="step-two hidden">
       <div class="complete-form">
-        <label >学院</label> <select name="college" value=""><option value="1">xx学院</option><option value="0">xxx学院</option></select><br/>
-        <label >年级</label> <select name="grade" value=""><option value="1">14</option><option value="0">15</option></select><br/>
+        <label >学院</label> <select name="college" value=""><option value="xx">xx学院</option><option value="xxx">xxx学院</option></select><br/>
+        <label >年级</label> <select name="grade" value=""><option value="14">14</option><option value="15">15</option></select><br/>
         <label >班级</label> <input type="text" name="class" value=""><br/>
-        <label >宿舍</label> <select name="dormitory" value=""><option value="1">韵苑1栋</option><option value="0">韵苑2栋</option></select><br/>
+        <label >宿舍</label> <select name="dorm" value=""><option value="1">韵苑1栋</option><option value="0">韵苑2栋</option></select><br/>
       </div>
       <button @click="toThree" type="button">下一步</button>
     </div>
@@ -33,13 +33,15 @@
 <!--    <div class="step-three hidden">
           <h1>兼职意向调查</h1>
           </div>-->
-      <button @click="toEnd" type="button">下一步</button>
+      <button @click="toEnd" type="button">提交</button>
 
 
   </div>
 </template>
 
 <script>
+import axios from '@/axios'
+
 function getValues(...names){
    for(let i = 0;i < names.length; i++){
      names[i] = document.getElementsByName(names[i])[0].value;
@@ -74,9 +76,22 @@ export default {
       }
     },
     toThree(){
+      let data = [];
+
       if(checkValues(getValues('class'),1)){
-        document.getElementsByClassName('step-two')[0].className += ' hidden';
-        document.getElementsByClassName('step-three')[0].className = 'step-three';
+        //document.getElementsByClassName('step-two')[0].className += ' hidden';
+        //document.getElementsByClassName('step-three')[0].className = 'step-three';
+        data = getValues('name','qq','gender','class','dorm','grade',"college");
+        axios.get('/user/insertInfo?username='+data[0]+'&qq='+data[1]+'&sex='+data[2]+'&clazz='+data[3]+'&dorm='+data[4]+'&grade='+data[5]+"&colleage="+data[6])
+          .then((res)=>{
+            if(res.data.msg === "SUCCESS"){
+              location.hash = '/center'
+            }else {
+              alert('信息错误，请重试');
+              location.reload()
+            }
+          })
+          .catch((error)=>{alert('通信错误')})
       }
     },
     toEnd(){

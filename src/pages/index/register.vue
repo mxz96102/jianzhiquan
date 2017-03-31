@@ -32,7 +32,7 @@ export default {
   data () {
     let schoolList = [{
       name : "xxx",
-      value : "2"
+      value : "1"
     }];
 
     return {
@@ -62,6 +62,7 @@ export default {
           }
         };
         //Sent phone request here
+        axios.get("/auth/code?phonenum="+username.value)
         counter();
       }
     },
@@ -85,13 +86,31 @@ export default {
       if(flag){
         if(!!phonePasswd.getElementsByTagName('input')[0].value){
         //login here
+
           complete();
         } else {
           alert('请输入验证码');
         }
       } else {
-        if(passwd.value.length > 9){
+        if(passwd.value.length < 9){
           alert('密码长度最少是9')
+        } else {
+          axios.get('auth/register?phonenum=' +username.value +
+            '&credential=' +passwd.value +
+            '&code=' +phonePasswd.getElementsByTagName('input')[0].value +
+            '&uniid='+document.getElementsByTagName('select')[0].value)
+            .then((res)=>{
+              let data = res.data;
+              if(res.data.msg === 'SUCCESS'){
+                location.hash = "#/complete"
+              }else if(res.data.msg.includes('code')){
+                alert("验证码错误，请重试")
+                location.reload()
+              }else {
+                alert("该号码已注册，请重试")
+                location.reload()
+              }
+            })
         }
 
       }
