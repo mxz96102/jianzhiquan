@@ -8,16 +8,35 @@
         <td>联系人</td>
         <td>业务</td>
       </tr>
+        <tr v-for="clazz in allclazz">
+            <td class="class-manage-title">{{clazz.colleage}}</td>
+            <td>{{clazz.grade}}</td>
+            <td>{{clazz.marketname}}</td>
+            <td>{{clazz.attennum}}</td>
+            <td>{{clazz.notemessagenum}}</td>
+        </tr>
     </table>
     <button>新增班级</button>
   </div>
 </template>
 
 <script>
+import axios from '@/axios'
+
 export default {
   name: 'classManage',
   data () {
-    return {}
+    let __this = this;
+
+    axios.get("/market/getAvailableMarket")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS")
+          __this.allclazz = res.data.result
+      });
+
+    return {
+      allclazz:[{colleage:"loading..."}]
+    }
   }
 }
 </script>
@@ -38,5 +57,9 @@ export default {
   border: none;
   color:white;
   margin-top: 2rem;
+}
+.class-manage-title{
+    text-decoration: underline;
+    color: #00ccff;
 }
 </style>

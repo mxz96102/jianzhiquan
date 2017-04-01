@@ -11,22 +11,25 @@
       </div>
     </div>
     <ul class="center-list">
-      <li>
+      <li @click="()=>location.hash='#/balance'">
         钱包余额 <span class="center-list-im"></span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
       </li>
-        <li v-if="auth == true">
+        <li v-if="result.state == true">
             兼职管理 <span class="center-list-im"></span><span class="center-list-less">人员/工作管理</span><i class="fa fa-angle-right"></i>
         </li>
-        <li  v-if="auth == true">
+        <li  v-if="result.state == true">
             班级管理 <span class="center-list-im"></span><span class="center-list-less">销售/班级管理</span><i class="fa fa-angle-right"></i>
         </li>
 
     </ul>
+      <navbar />
   </div>
 </template>
 
 <script>
 import axios from '@/axios'
+import Navbar from '@/components/navbar'
+
 export default {
   name: '',
   beforeCreate(){
@@ -52,7 +55,7 @@ export default {
           alert('请登录')
           //location.hash = '/'
         }else
-            __this.result = res.data.reslut;
+            __this.result = res.data.result;
       })
       .catch(function (error) {
         alert("通信错误")
@@ -64,8 +67,12 @@ export default {
         username:"Loading",
         phonenum:"",
         school:""
-      }
+      },
+      location : window.location
     }
+  },
+  components: {
+    'navbar': Navbar
   }
 }
 </script>

@@ -10,12 +10,18 @@
         <td>QQ号</td>
         <td>宿舍号</td>
       </tr>
+        <tr v-for="man in contacts">
+            <td>{{man.role}}</td>
+            <td>{{man.name}}</td>
+            <td>{{man.phonenum}}</td>
+            <td>{{man.qq}}</td>
+            <td>{{man.dorm}}</td>
+        </tr>
     </table>
     <h2>成交数据</h2>
     <table>
       <tr>
         <td></td>
-        <td>学院</td>
         <td>试卷</td>
         <td>驾校</td>
         <td>聚会</td>
@@ -23,21 +29,45 @@
       </tr>
       <tr>
         <td>单数</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{deals[0].vomule}}</td>
+        <td>{{deals[1].vomule}}</td>
+        <td>{{deals[2].vomule}}</td>
+        <td>{{deals[3].vomule}}</td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'classInfo',
   data () {
-    return {}
+    let __this = this;
+
+    axios.post("/job/getAllAtten?marketid="+__this.$route.params.id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS")
+          __this.contacts = res.data.result;
+      })
+      .catch(function (e) {
+        alert("权限不足")
+      })
+
+    axios.get("/job/getAllDeal?marketid="+__this.$route.params.id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS")
+          __this.deals = res.data.result;
+      })
+      .catch(function (e) {
+        alert("权限不足")
+      })
+
+    return {
+      deals:[{vomule:"loading"},{vomule:"loading"},{vomule:"loading"},{vomule:"loading"}],
+      contacts:[{role:"loading"}]
+    }
   }
 }
 </script>

@@ -13,8 +13,8 @@
     <div class="step-one hidden">
       <h1>很高兴认识你</h1>
       <div class="complete-form">
-        <label >姓名</label> <input type="text" name="name" value=""><br/>
-        <label >性别</label> <select name="gender" value=""><option value="男">帅气boy</option><option value="女">漂亮girl</option></select><br/>
+        <label>姓名</label> <input type="text" name="name" value=""><br/>
+        <label>性别</label> <select name="gender" value="男"><option value="男">帅气boy</option><option value="女">漂亮girl</option></select><br/>
         <label>QQ号</label> <input type="text" name="qq" value=""><br/>
       </div>
       <button @click="toTwo" type="button">下一步</button>
@@ -22,18 +22,23 @@
 
     <div class="step-two hidden">
       <div class="complete-form">
-        <label >学院</label> <select name="college" value=""><option value="xx">xx学院</option><option value="xxx">xxx学院</option></select><br/>
+        <label >学院</label>
+          <select name="college" value="">
+              <option  value="1">xx学院</option>
+              <option value="2">xxx学院</option>
+          </select><br/>
         <label >年级</label> <select name="grade" value=""><option value="14">14</option><option value="15">15</option></select><br/>
         <label >班级</label> <input type="text" name="class" value=""><br/>
-        <label >宿舍</label> <select name="dorm" value=""><option value="1">韵苑1栋</option><option value="0">韵苑2栋</option></select><br/>
+        <label >宿舍</label> <input type="text" name="dorm" placeholder="栋数-寝室号" value=""><br/>
       </div>
-      <button @click="toThree" type="button">下一步</button>
+      <button @click="toThree" type="button">提交</button>
     </div>
 
 <!--    <div class="step-three hidden">
           <h1>兼职意向调查</h1>
-          </div>-->
-      <button @click="toEnd" type="button">提交</button>
+          <button @click="toEnd" type="button">提交</button>
+        </div>-->
+
 
 
   </div>
@@ -78,7 +83,7 @@ export default {
     toThree(){
       let data = [];
 
-      if(checkValues(getValues('class'),1)){
+      if(checkValues(getValues('class','dorm'),1,4)){
         //document.getElementsByClassName('step-two')[0].className += ' hidden';
         //document.getElementsByClassName('step-three')[0].className = 'step-three';
         data = getValues('name','qq','gender','class','dorm','grade',"college");

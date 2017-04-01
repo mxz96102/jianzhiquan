@@ -19,6 +19,7 @@ import JobManage from '@/pages/user/Center/JobManage'
 
 import ClassManage from '@/pages/user/Center/Class/ClassManage'
 import ClassInfo from '@/pages/user/Center/Class/ClassInfo'
+import ClassList from '@/pages/user/Center/Class/ClassList'
 
 Vue.use(Router)
 
@@ -69,9 +70,13 @@ export default new Router({
       name: 'classManage',
       component: ClassManage
     },{
-      path: '/class/info',
+      path: '/class/info/:id',
       name: 'classInfo',
       component: ClassInfo
+    },{
+      path: '/class/',
+      name: 'classList',
+      component: ClassList
     },{
       path: '/center',
       name: 'center',

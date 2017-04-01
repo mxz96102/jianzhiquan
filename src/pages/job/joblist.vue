@@ -2,11 +2,11 @@
   <div class="job-list">
     <ul>
       <li v-for="job in jobs">
-       <div class="job-list-title">
+       <div class="job-list-title" @click="()=>location.hash = '#/job/'+ job.id">
         {{job.jobname}}
       </div>
        <div class="job-list-state">
-        时间：{{job.time}} &nbsp; &nbsp; <span>{{job.salary}}</span>
+        时间：{{job.fromtime}} &nbsp; &nbsp; <span>{{job.salary}}</span>
        </div>
       </li>
     </ul>
