@@ -48,7 +48,9 @@
         })
 
       return {
-        job:{}
+        job:{},
+        location : location
+
       }
     },
     methods: {

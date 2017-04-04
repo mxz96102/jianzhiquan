@@ -1,7 +1,7 @@
 <template>
     <div class="job-list">
         <ul>
-            <li v-for="job in jobs" @click="()=>location.hash = '#/job/info/'+ job.id">
+            <li v-for="job in jobs" @click="()=>location.hash = '#/my/job/info/'+ job.id">
                 <div class="job-list-title">
                     {{job.jobname}}
       </div>
@@ -38,7 +38,8 @@
         })
       return {
         jobs : [],
-        state : {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"}
+        state : {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"},
+        location : location
       }
     },
     components: {
