@@ -9,7 +9,7 @@
         <td>业务</td>
       </tr>
         <tr v-for="clazz in allclazz">
-            <td class="class-manage-title">{{clazz.colleage}}</td>
+            <td class="class-manage-title" @click="()=> location.hash='#/class/info/'+clazz.id">{{clazz.colleage}}</td>
             <td>{{clazz.grade}}</td>
             <td>{{clazz.marketname}}</td>
             <td>{{clazz.attennum}}</td>
@@ -35,7 +35,8 @@ export default {
       });
 
     return {
-      allclazz:[{colleage:"loading..."}]
+      allclazz:[{colleage:"loading..."}],
+      location : location
     }
   }
 }

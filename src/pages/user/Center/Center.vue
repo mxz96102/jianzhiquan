@@ -14,10 +14,10 @@
       <li @click="()=>location.hash='#/balance'">
         钱包余额 <span class="center-list-im"></span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
       </li>
-        <li v-if="result.state == true">
+        <li v-if="auth == true" @click="()=>location.hash='#/center/job/'+result.partyid">
             兼职管理 <span class="center-list-im"></span><span class="center-list-less">人员/工作管理</span><i class="fa fa-angle-right"></i>
         </li>
-        <li  v-if="result.state == true">
+        <li  v-if="auth == true" @click="()=>location.hash='#/class/manage'">
             班级管理 <span class="center-list-im"></span><span class="center-list-less">销售/班级管理</span><i class="fa fa-angle-right"></i>
         </li>
 
@@ -61,14 +61,23 @@ export default {
         alert("通信错误")
       });
 
+    axios.get("/user/figures").then((res)=>{
+      console.log(res);
+      if(res.data.msg === 'SUCCESS'){
+        __this.num = res.data.result;
+      }
+
+    })
+
     return {
-      auth: false,
+      auth: true,
       result:{
         username:"Loading",
         phonenum:"",
         school:""
       },
-      location : window.location
+      location : window.location,
+      num:{}
     }
   },
   components: {

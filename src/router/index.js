@@ -15,11 +15,13 @@ import MyJobInfo from '@/pages/user/Myjob/MyJobInfo'
 import MyJobList from '@/pages/user/Myjob/MyJobList'
 
 import Balance from '@/pages/user/Center/Balance/Balance'
+import BalanceCheck from '@/pages/user/Center/Balance/BlanceCheck'
 import JobManage from '@/pages/user/Center/JobManage'
 
 import ClassManage from '@/pages/user/Center/Class/ClassManage'
 import ClassInfo from '@/pages/user/Center/Class/ClassInfo'
 import ClassList from '@/pages/user/Center/Class/ClassList'
+import ClassBargin from '@/pages/user/Center/Class/ClassBargin'
 
 Vue.use(Router)
 
@@ -62,7 +64,11 @@ export default new Router({
       name: 'balance',
       component: Balance
     },{
-      path: '/center/job',
+      path: '/balance/check',
+      name: 'balanceCheck',
+      component: BalanceCheck
+    },{
+      path: '/center/job/:id',
       name: 'jobManage',
       component: JobManage
     },{
@@ -73,6 +79,10 @@ export default new Router({
       path: '/class/info/:id',
       name: 'classInfo',
       component: ClassInfo
+    },{
+      path: '/class/bargin/:id/:type',
+      name: 'classBargin',
+      component: ClassBargin
     },{
       path: '/class/',
       name: 'classList',

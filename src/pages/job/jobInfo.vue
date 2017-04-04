@@ -62,7 +62,8 @@ export default {
           } else if(res.data.msg === 'SUCCESS'){
             alert('申请成功');
           } else
-            alert('申请失败，请尝试刷新后申请')
+            alert('申请失败，请尝试刷新后申请');
+          location.reload()
         })
         .catch(function (error) {
           alert("通信错误")

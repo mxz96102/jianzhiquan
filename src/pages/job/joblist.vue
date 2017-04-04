@@ -6,7 +6,7 @@
         {{job.jobname}}
       </div>
        <div class="job-list-state">
-        时间：{{job.fromtime}} &nbsp; &nbsp; <span>{{job.salary}}</span>
+        时间：{{job.fromtime}} &nbsp; &nbsp; <span>{{state[job.salary]}}</span>
        </div>
       </li>
     </ul>
@@ -34,7 +34,8 @@ export default {
         alert("通信错误")
       })
     return {
-      jobs : []
+      jobs : [],
+      state : {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"}
     }
   },
   components: {

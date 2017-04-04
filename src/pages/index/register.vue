@@ -11,7 +11,7 @@
         <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
         <select class="form-input" name="">
           <option value="1">华中科技大学</option>
-          <option v-for="school in schoolList" :value="school.value">{{school.name}}</option>
+          <option v-for="school in schoolList" :value="school.id">{{school.uniname}}</option>
 
         </select>
       </div>
@@ -31,9 +31,16 @@ export default {
   name: 'register',
   data () {
     let schoolList = [{
-      name : "xxx",
-      value : "1"
-    }];
+      uniname : "loading...",
+      id : "1"
+    }],__this = this;
+
+    axios.get("/uni/allUniversity")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          __this.schoolList = __this.data.result
+        }
+      });
 
     return {
       schoolList : schoolList
@@ -108,7 +115,7 @@ export default {
                 location.reload()
               }else {
                 alert("该号码已注册，请重试")
-                location.reload()
+                //location.reload()
               }
             })
         }

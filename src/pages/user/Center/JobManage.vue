@@ -1,35 +1,53 @@
 <template>
   <div class="job-manage">
+<!--
     <h1>华小科</h1>
-    <h2>华科兼职圈3圈主</h2>
-    <p>新注册：9人</p>
-    <p>新兼职次数：30次 &nbsp; 兼职新收益:1000元</p>
+-->
+    <h2>{{info.name}}圈主</h2>
+    <p>圈子id：{{info.id}}</p>
+    <p>圈主id：{{info.ownerid}} </p>
     <table>
       <tr>
         <td>序号</td>
         <td>姓名</td>
         <td>班级</td>
         <td>QQ号</td>
-        <td>已报名</td>
-        <td>已赚取</td>
+        <td>宿舍</td>
       </tr>
-      <tr>
-        <td>01</td>
-        <td>xxxx</td>
-        <td>xxxxxx</td>
-        <td>xxxxxxxxxx</td>
-        <td>10000</td>
-        <td>10000</td>
+      <tr v-for="man in men">
+        <td>{{man.id}}</td>
+        <td>{{man.username}}</td>
+        <td>{{man.clazz}}</td>
+        <td>{{man.qq}}</td>
+        <td>{{man.dorm}}</td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
-export default {
+  import axios from 'axios'
+
+  export default {
   name: 'jobManage',
   data () {
-    return {}
+
+    axios.get(" /party/partyInfo")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS")
+          __this.info = res.data.result;
+      }).catch()
+
+    axios.get("/party/allMember?partyid="+this.$route.params.id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS")
+          __this.men = res.data.result;
+      }).catch()
+
+    return {
+      info:{},
+      men:[]
+    }
   }
 }
 </script>

@@ -22,13 +22,9 @@
 
     <div class="step-two hidden">
       <div class="complete-form">
-        <label >学院</label>
-          <select name="college" value="">
-              <option  value="1">xx学院</option>
-              <option value="2">xxx学院</option>
-          </select><br/>
-        <label >年级</label> <select name="grade" value=""><option value="14">14</option><option value="15">15</option></select><br/>
-        <label >班级</label> <input type="text" name="class" value=""><br/>
+        <label >学院</label> <input type="text" name="college" value="" /><br/>
+        <label >年级</label> <input name="grade" value=""/><br/>
+        <label >班级</label> <input type="text" name="class" value=""/><br/>
         <label >宿舍</label> <input type="text" name="dorm" placeholder="栋数-寝室号" value=""><br/>
       </div>
       <button @click="toThree" type="button">提交</button>
@@ -83,7 +79,7 @@ export default {
     toThree(){
       let data = [];
 
-      if(checkValues(getValues('class','dorm'),1,4)){
+      if(checkValues(getValues('class','dorm','college'),1,4,2)){
         //document.getElementsByClassName('step-two')[0].className += ' hidden';
         //document.getElementsByClassName('step-three')[0].className = 'step-three';
         data = getValues('name','qq','gender','class','dorm','grade',"college");

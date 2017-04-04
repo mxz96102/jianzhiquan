@@ -34,6 +34,13 @@
         <td>{{deals[2].vomule}}</td>
         <td>{{deals[3].vomule}}</td>
       </tr>
+        <tr>
+            <td>增加</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/PAPER'">+</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/D_SCHOOL'">+</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/MEETING'">+</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/T-SHIRT'">+</td>
+        </tr>
     </table>
   </div>
 </template>
@@ -66,7 +73,8 @@ export default {
 
     return {
       deals:[{vomule:"loading"},{vomule:"loading"},{vomule:"loading"},{vomule:"loading"}],
-      contacts:[{role:"loading"}]
+      contacts:[{role:"loading"}],
+      location:location
     }
   }
 }

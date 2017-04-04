@@ -1,13 +1,13 @@
 <template>
   <div class="balance">
-    <h1>华小科，感谢这么努力的自己</h1>
+    <h1>感谢这么努力的自己</h1>
     <div class="balance-money">
       <div class="balance-all">
         <div class="balance-title">
           <p>已挣金额</p>
         </div>
         <div class="balance-num">
-          88888.00元
+          {{balance.earn}}元
         </div>
       </div>
       <div class="balance-now">
@@ -15,21 +15,21 @@
           <p>钱包余额</p>
         </div>
         <div class="balance-num">
-          88888.00元
+          {{balance.balance}}元
         </div>
       </div>
     </div>
     <div class="balance-button">
-      <button>提现到支付宝</button>
+      <button @click="()=>location.hash='#/balance/check'">提现到支付宝</button>
       <p>3个工作日报账</p>
     </div>
     <ul class="balance-info">
-      <li>
+      <li v-for="item in infos">
         <div>
-          2016年8月19日 19:08 <span class="balance-type">发工资</span> <span class="balance-list-num">356元</span>
+          2016年8月19日 19:08 <span class="balance-type"></span> <span class="balance-list-num">{{item.volume}}元</span>
         </div>
         <div>
-          提现至支付宝 &nbsp; 131****8888<span class="balance-state">处理中</span>
+          {{item.discription}}<span class="balance-state">{{item.tradestate}}</span>
         </div>
       </li>
     </ul>
@@ -37,10 +37,32 @@
 </template>
 
 <script>
+import axios from '@/axios'
+
 export default {
   name: '',
   data () {
-    return {}
+    let __this = this;
+
+    axios.get("account/accountInfo")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          __this.balance = res.data.result;
+        }
+      })
+
+    axios.get("/account/tradeList")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          __this.infos = res.data.result;
+        }
+      })
+
+    return {
+      infos : [],
+      balance : {},
+      location : location
+    }
   }
 }
 </script>
