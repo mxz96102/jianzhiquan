@@ -72,7 +72,7 @@ export default {
     axios.get("/party/partyInfo"
       .catch(function (error) {
         __this.auth = false
-      })
+      }))
 
     return {
       auth: true,
