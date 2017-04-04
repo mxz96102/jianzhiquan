@@ -23,7 +23,7 @@
 
 
         axios.get("/account/transferRequest?volume="+volume+"&discription="+discription+"&custom="+custom+"&marketid="+this.$route.params.id+"&dealtype="+this.$route.params.type)
-          .then(function (response) {
+          .then(function (res) {
             if(res.data.code === '401'){
               alert('请登录')
               //location.hash = '/'

@@ -22,7 +22,7 @@
 
         if(confirm("金额："+volume+"\n支付宝账号："+discription+"\n你是否确认")){
           axios.get("/account/transferRequest?volume=-"+volume+"&discription="+discription)
-            .then(function (response) {
+            .then(function (res) {
               if(res.data.code === '401'){
                 alert('请登录')
                 //location.hash = '/'

@@ -35,7 +35,7 @@
       let __this = this;
 
       axios.get("/job/jobInfo?id="+$route.params.id)
-        .then(function (response) {
+        .then(function (res) {
 
           if(res.data.code === '401'){
             alert('请登录')
