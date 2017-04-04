@@ -89,7 +89,7 @@ export default {
               location.hash = '/center'
             }else {
               alert('信息错误，请重试');
-              location.reload()
+              //location.reload()
             }
           })
           .catch((error)=>{alert('通信错误')})

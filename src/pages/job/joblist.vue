@@ -23,10 +23,9 @@ export default {
   data () {
     axios.get("/job/getAvailableJob")
       .then(function (response) {
-
         if(res.data.code === '401'){
           alert('请登录')
-          //location.hash = '/'
+          location.hash = '/'
         } else
           __this.jobs = res.data.result;
       })

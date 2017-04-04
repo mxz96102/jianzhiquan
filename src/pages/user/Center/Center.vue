@@ -53,7 +53,7 @@ export default {
         console.log(res);
         if(res.data.code === '401'){
           alert('请登录')
-          //location.hash = '/'
+          location.hash = '/'
         }else
             __this.result = res.data.result;
       })
@@ -68,6 +68,11 @@ export default {
       }
 
     })
+
+    axios.get("/party/partyInfo"
+      .catch(function (error) {
+        __this.auth = false
+      })
 
     return {
       auth: true,

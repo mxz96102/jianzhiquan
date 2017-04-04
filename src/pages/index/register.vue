@@ -10,7 +10,6 @@
       <div class="register-complete hidden">
         <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
         <select class="form-input" name="">
-          <option value="1">华中科技大学</option>
           <option v-for="school in schoolList" :value="school.id">{{school.uniname}}</option>
 
         </select>
@@ -38,7 +37,8 @@ export default {
     axios.get("/uni/allUniversity")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
-          __this.schoolList = __this.data.result
+          __this.schoolList = res.data.result
+          console.log(__this.schoolList)
         }
       });
 

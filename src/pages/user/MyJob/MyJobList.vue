@@ -21,7 +21,7 @@
   export default {
     name: 'myjobList',
     data () {
-      axios.get("/auth/userJob")
+      axios.get("/user/userJob")
         .then(function (response) {
 
           if(res.data.code === '401'){
