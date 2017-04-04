@@ -32,6 +32,7 @@
         })
         .catch(function (error) {
           alert("通信错误")
+          console.log(error)
         })
       return {
         jobs : [],
