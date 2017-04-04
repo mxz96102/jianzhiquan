@@ -21,6 +21,8 @@ import axios from '@/axios'
 export default {
   name: 'jobList',
   data () {
+    let __this = this
+
     axios.get("/job/getAvailableJob")
       .then(function (res) {
         if(res.data.code === '401'){

@@ -21,6 +21,8 @@
   export default {
     name: 'myjobList',
     data () {
+      let __this = this
+
       axios.get("/user/userJob")
         .then(function (res) {
 
