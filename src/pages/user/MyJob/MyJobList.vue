@@ -1,7 +1,7 @@
 <template>
     <div class="job-list">
         <ul>
-            <li v-for="job in jobs" @click="()=>location.hash = '#/job/'+ job.id">
+            <li v-for="job in jobs" @click="()=>location.hash = '#/job/info/'+ job.id">
                 <div class="job-list-title">
                     {{job.jobname}}
       </div>

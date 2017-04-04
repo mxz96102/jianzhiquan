@@ -35,7 +35,7 @@ export default {
   data () {
     let __this = this;
 
-    axios.get("/job/jobInfo?id="+$route.params.id)
+    axios.get("/job/jobInfo?id="+this.$route.params.id)
       .then(function (res) {
 
         if(res.data.code === '401'){
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     applyJob(){
-      axios.get("job/apply?id="+$route.params.id)
+      axios.get("job/apply?id="+this.$route.params.id)
         .then(function (res) {
           if(res.data.code === '401'){
             alert('请登录')

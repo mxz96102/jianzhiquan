@@ -36,10 +36,10 @@
       </tr>
         <tr>
             <td>增加</td>
-            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/PAPER'">+</td>
-            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/D_SCHOOL'">+</td>
-            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/MEETING'">+</td>
-            <td @click="()=>location.hash = '#/class/bargin/'+$route.params.id+'/T-SHIRT'">+</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+this.$route.params.id+'/PAPER'">+</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+this.$route.params.id+'/D_SCHOOL'">+</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+this.$route.params.id+'/MEETING'">+</td>
+            <td @click="()=>location.hash = '#/class/bargin/'+this.$route.params.id+'/T-SHIRT'">+</td>
         </tr>
     </table>
   </div>

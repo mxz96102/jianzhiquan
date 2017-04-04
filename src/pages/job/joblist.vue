@@ -2,7 +2,7 @@
   <div class="job-list">
     <ul>
       <li v-for="job in jobs">
-       <div class="job-list-title" @click="()=>location.hash = '#/job/'+ job.id">
+       <div class="job-list-title" @click="()=>location.hash = '#/job/info/'+ job.id">
         {{job.jobname}}
       </div>
        <div class="job-list-state">

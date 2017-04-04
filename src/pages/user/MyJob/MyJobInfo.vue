@@ -34,7 +34,7 @@
     data () {
       let __this = this;
 
-      axios.get("/job/jobInfo?id="+$route.params.id)
+      axios.get("/job/jobInfo?id="+this.$route.params.id)
         .then(function (res) {
 
           if(res.data.code === '401'){
