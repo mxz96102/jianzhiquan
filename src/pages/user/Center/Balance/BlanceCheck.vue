@@ -21,7 +21,7 @@
         discription = document.getElementsByName("discription")[0].value;
 
         if(confirm("金额："+volume+"\n支付宝账号："+discription+"\n你是否确认")){
-          axios.get("/account/transferRequest?volume="+volume+"&discription="+discription)
+          axios.get("/account/transferRequest?volume=-"+volume+"&discription="+discription)
             .then(function (response) {
               if(res.data.code === '401'){
                 alert('请登录')
