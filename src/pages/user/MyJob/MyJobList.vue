@@ -22,12 +22,12 @@
     name: 'myjobList',
     data () {
       axios.get("/user/userJob")
-        .then(function (response) {
+        .then(function (res) {
 
           if(res.data.code === '401'){
             alert('请登录')
-            //location.hash = '/'
-          } else
+            location.hash = '/'
+          } else if(res.data.msg === 'SUCCESS')
             __this.jobs = res.data.result;
         })
         .catch(function (error) {
