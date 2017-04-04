@@ -5,7 +5,7 @@
                 <div class="job-info-title"><div class="job-label">兼职</div></div><div class="job-title job-info-content">{{job.jobname}}</div>
             </li>
             <li>
-                <div class="job-info-title">工作日期</div><div class="job-info-content">从{{job.fromtime}}到{{job.untiltime}}</div>
+                <div class="job-info-title">工作日期</div><div class="job-info-content">从{{(new Date(job.fromtime)).toLocaleDateString()}}到{{(new Date(job.untiltime)).toLocaleDateString()}}</div>
             </li>
             <li>
                 <div class="job-info-title">兼职时段</div><div class="job-info-content">{{job.time}}</div>
@@ -14,7 +14,7 @@
                 <div class="job-info-title">工作地点</div><div class="job-info-content">{{job.place}}</div>
             </li>
             <li>
-                <div class="job-info-title">招聘人数</div><div class="job-info-content">{{job.workernummax}}人</div>
+                <div class="job-info-title">招聘人数</div><div class="job-info-content">{{job.workernumnow}}/{{job.workernummax}}人</div>
             </li>
             <li>
                 <div class="job-info-title">工作任务</div><div class="job-info-content">{{job.description}}</div>
@@ -34,7 +34,7 @@
     data () {
       let __this = this;
 
-      axios.get("/job/jobInfo?id="+this.$route.params.id)
+      axios.get("/job/getInfo?id="+this.$route.params.id)
         .then(function (res) {
 
           if(res.data.code === '401'){
