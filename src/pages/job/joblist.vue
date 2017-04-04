@@ -6,7 +6,7 @@
         {{job.jobname}}
       </div>
        <div class="job-list-state">
-        时间：{{job.fromtime}} &nbsp; &nbsp; <span>{{state[job.salary]}}</span>
+        时间：{{(new Date(job.fromtime)).toLocaleString()}} &nbsp; &nbsp; <span>{{state[job.salary]}}</span>
        </div>
       </li>
     </ul>
@@ -36,7 +36,8 @@ export default {
       })
     return {
       jobs : [],
-      state : {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"}
+      state : {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"},
+      location : location
     }
   },
   components: {
