@@ -2,7 +2,7 @@
     <div class="balance-check">
         <label>提现金额:</label><input name="volume" type="text"/>元<br/>
         <label>支付宝账号:</label><input name="discription" type="text"/><br/>
-        <button @click="submit">提交</button>
+        <button @click="onsubmit">提交</button>
     </div>
 </template>
 
@@ -12,10 +12,10 @@
   export default {
     name: 'balanceCheck',
     data () {
-
+      return {};
     },
     methods:{
-      submit(){
+      onsubmit(){
         let volume = document.getElementsByName("volume")[0].value,
         discription = document.getElementsByName("discription")[0].value;
 

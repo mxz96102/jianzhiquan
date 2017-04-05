@@ -56,8 +56,8 @@ export default {
         alert("请求错误");
       });
 
-    if(getParameterByName("job") !== "") {
-      location.hash = '#/job/info' + getParameterByName("job")
+    if(this.getParameterByName("job") !== "") {
+      location.hash = '#/job/info' + this.getParameterByName("job")
     }
   },
   data () {
