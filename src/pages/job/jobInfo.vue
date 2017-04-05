@@ -58,7 +58,7 @@ export default {
         .then(function (res) {
           if(res.data.code === '401'){
             alert('请注册或登录')
-            location.hash = '/?origin='+location.href;
+            location.hash = '/?job='+__this.$route.params.id;
           } else if(res.data.msg === 'SUCCESS'){
             alert('申请成功');
           } else

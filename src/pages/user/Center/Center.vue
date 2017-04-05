@@ -47,17 +47,18 @@ export default {
   beforeCreate(){
     axios.get('/user/checkUserInfo')
       .then((res)=>{
-        console.log(res);
         if(res.data.msg === 'FALSE'){
           alert('请完善信息')
           location.hash = '/complete'
-        } else if(getParameterByName("origin") !== ""){
-          location.href = getParameterByName("origin")
         }
       })
       .catch(function (error) {
         alert("请求错误");
       });
+
+    if(getParameterByName("job") !== "") {
+      location.hash = '#/job/info' + getParameterByName("job")
+    }
   },
   data () {
     let __this = this;
@@ -72,7 +73,7 @@ export default {
             __this.result = res.data.result;
       })
       .catch(function (error) {
-        alert("请求错误")
+        //alert("请求错误")
       });
 
     axios.get("/user/figures").then((res)=>{

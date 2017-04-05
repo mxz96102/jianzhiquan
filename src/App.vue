@@ -35,7 +35,6 @@ html,body{
   top: 0;
   left: 0;
   right: 0;
-  left: 0;
   margin: auto;
   height: 100vh;
   width: 100%;

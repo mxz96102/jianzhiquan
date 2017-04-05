@@ -65,8 +65,8 @@ export default {
   font-weight: lighter;
   text-align: center;
   color: #ff3300;
-  font-size: 2rem;
-  line-height: 2rem;
+  font-size: 1.5rem;
+  line-height: 4rem;
   border-bottom: 1px solid #ddd;
 }
 

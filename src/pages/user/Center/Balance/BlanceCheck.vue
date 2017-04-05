@@ -44,7 +44,7 @@
 <style scoped>
     .balance-check{
         height: 10rem;
-        padding-top: 5rem;
+        margin-top: 5rem;
         width: 80vw;
         border: solid black 1px;
     }
