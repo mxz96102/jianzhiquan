@@ -5,7 +5,7 @@
       <h1>兼职圈 靠自己</h1>
     </div>
     <div class="login-form">
-      <input class="form-input" placeholder="请输入手机号码" type="text" name="phone"/><br/>
+      <input class="form-input" placeholder="请输入手机号码" :value="$route.params.phonenum" type="text" name="phone"/><br/>
       <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
       <div class="phone-passwd hidden">
         <input type="text" class="phone-passwd-input" name="" value=""> <button @click="phoneCount()" name="button">获取验证码</button><br/>
@@ -83,7 +83,7 @@ export default {
                 }
               })
               .catch(function (error) {
-                alert('通信错误');
+                alert('请求错误');
                 console.log(error)
               });
           } else {
@@ -102,7 +102,7 @@ export default {
                 }
               })
               .catch(function (error) {
-                alert('通信错误');
+                alert('请求错误');
                 console.log(error)
               });
           } else {
@@ -121,13 +121,14 @@ export default {
 }
 .login{
   width: 75vw;
-  margin-top: 5rem;
+  padding-top: 5rem;
+  overflow: hidden;
 }
 .login-toggle{
   font-size: 1rem;
   font-weight: lighter;
   text-decoration: underline;
-  margin-top: 5rem;
+  padding-top: 5rem;
 }
 .logo-large{
   width: 7rem;

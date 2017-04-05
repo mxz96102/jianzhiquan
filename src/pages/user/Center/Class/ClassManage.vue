@@ -9,14 +9,14 @@
         <td>业务</td>
       </tr>
         <tr v-for="clazz in allclazz">
-            <td class="class-manage-title" @click="()=> location.hash='#/class/info/'+clazz.id">{{clazz.colleage}}</td>
+            <td class="class-manage-title" @click="()=> location.hash='#/class/info/'+clazz.id+'/'+clazz.marketname">{{clazz.colleage}}</td>
             <td>{{clazz.grade}}</td>
             <td>{{clazz.marketname}}</td>
             <td>{{clazz.attennum}}</td>
             <td>{{clazz.notemessagenum}}</td>
         </tr>
     </table>
-    <button>新增班级</button>
+    <button @click="()=>location.hash = '#/class/add'">新增班级</button>
   </div>
 </template>
 
@@ -45,11 +45,14 @@ export default {
 <style scoped>
 .class-manage>table{
   width: 100%;
+    border-collapse:collapse;
 }
+
 .class-manage>table td{
   border: 1px #ddd solid;
   font-size: 0.8rem;
 }
+
 .class-manage>button{
   width: 6rem;
   height: 1.5rem;
@@ -59,6 +62,7 @@ export default {
   color:white;
   margin-top: 2rem;
 }
+
 .class-manage-title{
     text-decoration: underline;
     color: #00ccff;

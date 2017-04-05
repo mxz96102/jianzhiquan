@@ -35,7 +35,7 @@
             location.reload()
           })
           .catch(function (error) {
-            alert("通信错误")
+            alert("请求错误")
           })
 
 
@@ -47,7 +47,7 @@
 <style scoped>
     .class-bargin{
         height: 10rem;
-        margin-top: 5rem;
+        padding-top: 5rem;
     }
     .class-bargin input{
         margin: 0.5rem auto;

@@ -30,13 +30,13 @@ export default {
         .then(function (response) {
           let res = response.data;
             if(res.msg === 'TRUE'){
-              location.hash='#/login'
+              location.hash='#/login/'+username.value
             } else {
-              location.hash='#/register'
+              location.hash='#/register/'+username.value
             }
           })
           .catch(function (error) {
-            alert('通信错误');
+            alert('请求错误');
             console.log(error)
           });
       }
@@ -51,7 +51,9 @@ export default {
 }
 .index{
   width: 75vw;
-  margin-top: 5rem;
+  padding-top: 5rem;
+  overflow: hidden;
+
 }
 .logo-large{
   width: 7rem;

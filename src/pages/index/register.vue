@@ -5,13 +5,12 @@
       <h1>兼职圈 靠自己</h1>
     </div>
     <div class="register-form">
-      <input class="form-input" placeholder="请输入手机号码" type="text" name="phone"/><br/>
+      <input class="form-input" placeholder="请输入手机号码" :value="$route.params.phonenum" type="text" name="phone"/><br/>
 
       <div class="register-complete hidden">
         <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
         <select class="form-input" name="">
           <option v-for="school in schoolList" :value="school.id">{{school.uniname}}</option>
-
         </select>
       </div>
       <div class="phone-passwd">
@@ -132,13 +131,14 @@ export default {
 }
 .register{
   width: 75vw;
-  margin-top: 5rem;
+  padding-top: 5rem;
+  overflow: hidden;
 }
 .register-toggle{
   font-size: 1rem;
   font-weight: lighter;
   text-decoration: underline;
-  margin-top: 5rem;
+  padding-top: 5rem;
 }
 .logo-large{
   width: 7rem;

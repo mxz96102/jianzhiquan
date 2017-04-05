@@ -2,15 +2,25 @@
     <div class="class-list">
         <ul>
             <li><h1>学院选择</h1></li>
-            <li v-for="item in list"><h1>{{item.name}}</h1><i class="fa fa-angle-right"></i></li>
+            <li v-for="item in list" @click="()=> location.hash = '/class/manage/'+item.id"><h1>{{item.name}}</h1><i class="fa fa-angle-right"></i></li>
         </ul>
     </div>
 </template>
 
 <script>
+  import axios from '@/axios'
+
   export default {
     name: '',
     data () {
+      axios.get('/market/getAvailableColleage')
+        .then(function (res) {
+            if(res.data.msg === "SUCCESS"){
+
+            }
+          }
+        )
+
       return {
         list:[{name:"Loading ..."}]
       }

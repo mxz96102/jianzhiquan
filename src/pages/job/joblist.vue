@@ -6,7 +6,7 @@
         {{job.jobname}}
       </div>
        <div class="job-list-state">
-        时间：{{(new Date(job.fromtime)).toLocaleDateString()}} &nbsp; &nbsp; <span>{{state[job.salary]}}</span>
+        时间：{{(new Date(job.fromtime)).toLocaleDateString()}} &nbsp; &nbsp; <span>{{state[job.jobstate]}}</span>
        </div>
       </li>
     </ul>
@@ -32,10 +32,10 @@ export default {
           __this.jobs = res.data.result;
       })
       .catch(function (error) {
-        alert("通信错误")
+        alert("请求错误")
       })
     return {
-      jobs : [],
+      jobs : [{jobname:"暂时没有工作"}],
       state : {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"},
       location : location
     }
@@ -55,17 +55,17 @@ export default {
 }
 
 .job-list>ul>li{
-  height: 4rem;
+  height: 6rem;
   width: 100%;
 }
 
 .job-list-title{
-  height: 2rem;
+  height: 4rem;
   width: 100%;
   font-weight: lighter;
   text-align: center;
   color: #ff3300;
-  font-size: 1.2rem;
+  font-size: 2rem;
   line-height: 2rem;
   border-bottom: 1px solid #ddd;
 }

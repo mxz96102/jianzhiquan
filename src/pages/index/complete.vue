@@ -22,10 +22,26 @@
 
     <div class="step-two hidden">
       <div class="complete-form">
-        <label >学院</label> <input type="text" name="college" value="" /><br/>
-        <label >年级</label> <input name="grade" value=""/><br/>
+        <label >学院</label>
+          <select class="form-input" name="colleage">
+              <option v-for="colleage in colleageList" :value="colleage.colleagename">{{colleage.colleagename}}</option>
+          </select>
+          <br/>
+        <label >年级</label>
+          <select class="form-input" name="grade">
+              <option value="2013">2013</option>
+              <option value="2013">2014</option>
+              <option value="2013">2015</option>
+              <option value="2013">2016</option>
+              <option value="2013">2017</option>
+          </select>
+          <br/>
         <label >班级</label> <input type="text" name="class" value=""/><br/>
-        <label >宿舍</label> <input type="text" name="dorm" placeholder="栋数-寝室号" value=""><br/>
+        <label >宿舍</label>
+          <select class="form-input" name="dorm">
+              <option v-for="dorm in dormList" :value="dorm.dormname">{{dorm.dormname}}</option>
+          </select>
+          <br/>
       </div>
       <button @click="toThree" type="button">提交</button>
     </div>
@@ -34,9 +50,6 @@
           <h1>兼职意向调查</h1>
           <button @click="toEnd" type="button">提交</button>
         </div>-->
-
-
-
   </div>
 </template>
 
@@ -63,7 +76,25 @@ function checkValues(values, ...length){
 export default {
   name: '',
   data () {
-    return {}
+
+    axios.post("user/userInfo")
+      .then((res)=>{
+        console.log(res);
+        if(res.data.code === '401'){
+          alert('请登录')
+          location.hash = '/'
+        }else
+          axios.get("/uni/allColleage?uniid="+res.data.result.uniid)
+            .then(function (res) {
+              if(res.data.msg === "SUCCESS"){
+                __this.colleageList = res.data.result
+              }
+            });
+      })
+
+
+
+    return {colleageList:[],dormList:[]}
   },
   methods: {
     toOne(){
@@ -92,7 +123,7 @@ export default {
               //location.reload()
             }
           })
-          .catch((error)=>{alert('通信错误')})
+          .catch((error)=>{alert('请求错误')})
       }
     },
     toEnd(){
@@ -106,6 +137,8 @@ export default {
 .complete{
   width: 80vw;
   margin-top: 7rem;
+  overflow: hidden;
+
 }
 .complete button{
   background: #ff3300;

@@ -44,7 +44,7 @@
             __this.job = res.data.result;
         })
         .catch(function (error) {
-          alert("通信错误")
+          alert("请求错误")
         })
 
       return {

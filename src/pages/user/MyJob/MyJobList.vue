@@ -33,11 +33,11 @@
             __this.jobs = res.data.result;
         })
         .catch(function (error) {
-          alert("通信错误")
+          alert("请求错误")
           console.log(error)
         })
       return {
-        jobs : [],
+        jobs : [{jobname:"暂时没有工作"}],
         state : {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"},
         location : location
       }
@@ -57,17 +57,17 @@
     }
 
     .job-list>ul>li{
-        height: 4rem;
+        height: 6rem;
         width: 100%;
     }
 
     .job-list-title{
-        height: 2rem;
+        height: 4rem;
         width: 100%;
         font-weight: lighter;
         text-align: center;
         color: #ff3300;
-        font-size: 1.2rem;
+        font-size: 2rem;
         line-height: 2rem;
         border-bottom: 1px solid #ddd;
     }

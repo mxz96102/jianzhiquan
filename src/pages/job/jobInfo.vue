@@ -17,10 +17,10 @@
           <div class="job-info-title">招聘人数</div><div class="job-info-content">{{job.workernumnow}}/{{job.workernummax}}人</div>
       </li>
       <li>
-        <div class="job-info-title">工作任务</div><div class="job-info-content">{{job.description}}</div>
+        <div class="job-info-title">工作任务</div><div class="job-info-content">{{job.request}}</div>
       </li>
       <li>
-        <div class="job-info-title">工作要求</div><div class="job-info-content">{{job.request}}</div>
+        <div class="job-info-title">工作要求</div><div class="job-info-content">{{job.description}}</div>
       </li>
     </ul>
     <button @click="applyJob()" name="button">马上申请兼职</button>
@@ -39,13 +39,13 @@ export default {
       .then(function (res) {
 
         if(res.data.code === '401'){
-          alert('请登录')
+          //alert('请登录')
           //location.hash = '/'
         } else
           __this.job = res.data.result;
       })
       .catch(function (error) {
-        alert("通信错误")
+        alert("请求错误")
       })
 
     return {
@@ -57,16 +57,16 @@ export default {
       axios.get("job/apply?id="+this.$route.params.id)
         .then(function (res) {
           if(res.data.code === '401'){
-            alert('请登录')
-            //location.hash = '/'
+            alert('请注册或登录')
+            location.hash = '/?origin='+location.href;
           } else if(res.data.msg === 'SUCCESS'){
             alert('申请成功');
           } else
-            alert('申请失败，请尝试刷新后申请');
+            alert('人数已满或者你已经申请。');
           location.reload()
         })
         .catch(function (error) {
-          alert("通信错误")
+          alert("请求错误")
         })
     },
   }
@@ -76,7 +76,6 @@ export default {
 <style scoped>
 .job-info{
   width: 90vw;
-  margin-top: 2rem;
 }
 
 .job-title{

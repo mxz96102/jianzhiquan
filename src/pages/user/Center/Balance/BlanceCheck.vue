@@ -1,7 +1,7 @@
 <template>
     <div class="balance-check">
         <label>提现金额:</label><input name="volume" type="text"/>元<br/>
-        <label>支付宝账号:</label><input name="discription" type="text"/>
+        <label>支付宝账号:</label><input name="discription" type="text"/><br/>
         <button @click="submit">提交</button>
     </div>
 </template>
@@ -13,27 +13,26 @@
     name: 'balanceCheck',
     data () {
 
-      return {}
     },
     methods:{
       submit(){
         let volume = document.getElementsByName("volume")[0].value,
         discription = document.getElementsByName("discription")[0].value;
 
-        if(confirm("金额："+volume+"\n支付宝账号："+discription+"\n你是否确认")){
+        if(confirm("金额："+volume+"\n支付宝账号："+discription+"\n你是否确认提现")){
           axios.get("/account/transferRequest?volume=-"+volume+"&discription="+discription)
             .then(function (res) {
               if(res.data.code === '401'){
                 alert('请登录')
-                //location.hash = '/'
+                location.hash = '/'
               } else if(res.data.msg === 'SUCCESS'){
                 alert('申请成功');
               } else
-                alert('申请失败，请尝试刷新后申请');
-              location.reload()
+                alert('余额不足，请检查余额后再继续');
+              history.back();
             })
             .catch(function (error) {
-              alert("通信错误")
+              alert("请求错误")
             })
         }
 
@@ -45,7 +44,9 @@
 <style scoped>
     .balance-check{
         height: 10rem;
-        margin-top: 5rem;
+        padding-top: 5rem;
+        width: 80vw;
+        border: solid black 1px;
     }
     .balance-check input{
         margin: 0.5rem auto;
@@ -66,5 +67,8 @@
         padding: 0.25rem;
         color: white;
         margin-top: 1rem;
+    }
+    .balance-check label{
+        width: 6rem;
     }
 </style>

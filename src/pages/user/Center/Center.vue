@@ -12,15 +12,14 @@
     </div>
     <ul class="center-list">
       <li @click="()=>location.hash='#/balance'">
-        钱包余额 <span class="center-list-im"></span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
+        钱包余额 <span class="center-list-im">{{num.balance}}元</span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
       </li>
         <li v-if="result.party !== null" @click="()=>location.hash='#/center/job/'+result.partyid">
-            兼职管理 <span class="center-list-im"></span><span class="center-list-less">人员/工作管理</span><i class="fa fa-angle-right"></i>
+            兼职管理 <span class="center-list-im">{{num.memberNum}}个</span><span class="center-list-less">人员/工作管理</span><i class="fa fa-angle-right"></i>
         </li>
-        <li  v-if="result.party !== null" @click="()=>location.hash='#/class/manage'">
-            班级管理 <span class="center-list-im"></span><span class="center-list-less">销售/班级管理</span><i class="fa fa-angle-right"></i>
+        <li  v-if="result.party !== null" @click="()=>location.hash='#/class/'">
+            班级管理 <span class="center-list-im">{{num.colleageNum}}个</span><span class="center-list-less">销售/班级管理</span><i class="fa fa-angle-right"></i>
         </li>
-
     </ul>
       <navbar />
   </div>
@@ -32,6 +31,19 @@ import Navbar from '@/components/navbar'
 
 export default {
   name: '',
+
+  getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
+
   beforeCreate(){
     axios.get('/user/checkUserInfo')
       .then((res)=>{
@@ -39,10 +51,12 @@ export default {
         if(res.data.msg === 'FALSE'){
           alert('请完善信息')
           location.hash = '/complete'
+        } else if(getParameterByName("origin") !== ""){
+          location.href = getParameterByName("origin")
         }
       })
       .catch(function (error) {
-        alert("通信错误");
+        alert("请求错误");
       });
   },
   data () {
@@ -58,7 +72,7 @@ export default {
             __this.result = res.data.result;
       })
       .catch(function (error) {
-        alert("通信错误")
+        alert("请求错误")
       });
 
     axios.get("/user/figures").then((res)=>{
@@ -79,7 +93,8 @@ export default {
       result:{
         username:"Loading",
         phonenum:"",
-        school:""
+        school:"",
+        university:{uniname:"Loading"}
       },
       location : window.location,
       num:{}

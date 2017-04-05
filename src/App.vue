@@ -2,7 +2,6 @@
   <div id="app">
     <router-view class="main-body"></router-view>
   </div>
-
 </template>
 <script>
 
@@ -14,7 +13,7 @@ export default {
 <style>
 html,body{
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -28,6 +27,7 @@ html,body{
   text-align: center;
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 
 .main-body{
@@ -37,7 +37,10 @@ html,body{
   right: 0;
   left: 0;
   margin: auto;
-  height: 100%;
+  height: 100vh;
   width: 100%;
+}
+div{
+  box-sizing: border-box;
 }
 </style>

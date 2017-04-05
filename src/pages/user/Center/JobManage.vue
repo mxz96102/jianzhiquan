@@ -1,8 +1,7 @@
 <template>
   <div class="job-manage">
-<!--
-    <h1>华小科</h1>
--->
+    <h1>{{user}}</h1>
+
     <h2>{{info.name}}圈主</h2>
     <p>圈子id：{{info.id}}</p>
     <p>圈主id：{{info.ownerid}} </p>
@@ -44,9 +43,20 @@
           __this.men = res.data.result;
       }).catch()
 
+    axios.post("user/userInfo")
+      .then((res)=>{
+        console.log(res);
+        if(res.data.code === '401'){
+          alert('请登录')
+          location.hash = '/'
+        }else
+          __this.user = res.data.result.username
+      })
+
     return {
       info:{},
-      men:[]
+      men:[],
+      user:"Loading"
     }
   }
 }
@@ -69,6 +79,7 @@
 }
 .job-manage>table{
   width: 100%;
+  border-collapse:collapse;
 }
 .job-manage>table td{
   border: 1px #ddd solid;

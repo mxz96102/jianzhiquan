@@ -1,6 +1,6 @@
 <template>
   <div class="class-info">
-    <h1>光电学院 &nbsp; 2012级 &nbsp;电子1201班</h1>
+    <h1>{{$route.params.name}}</h1>
     <h2>联系人</h2>
     <table>
       <tr>
@@ -42,6 +42,17 @@
             <td @click="()=>location.hash = '#/class/bargin/'+this.$route.params.id+'/T-SHIRT'">+</td>
         </tr>
     </table>
+      <h2>拜访记录</h2>
+      <ul>
+          <li v-for="msg in msgList">
+              <p><i class="fa fa-angle-right"></i>{{(new Date(msg.createtime).toLocaleString()) }}&nbsp;&nbsp;{{ msg.ownername }}</p>
+              <p style="padding-left: 2rem">{{ msg.content }}</p>
+          </li>
+          <li >
+              <input type="text" name="message" placeholder="新增记录">
+              <button @click="send">提交</button>
+          </li>
+      </ul>
   </div>
 </template>
 
@@ -51,30 +62,68 @@ import axios from 'axios'
 export default {
   name: 'classInfo',
   data () {
-    let __this = this;
+    let __this = this,i;
 
-    axios.post("/job/getAllAtten?marketid="+__this.$route.params.id)
+    axios.get("/job/getAllAtten?marketid="+__this.$route.params.id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS")
           __this.contacts = res.data.result;
       })
       .catch(function (e) {
-        alert("权限不足")
+        //alert("权限不足")
+      })
+
+    axios.get("/job/getAllNoteMessage?marketid="+__this.$route.params.id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS")
+          __this.msgList = res.data.result;
+      })
+      .catch(function (e) {
       })
 
     axios.get("/job/getAllDeal?marketid="+__this.$route.params.id)
       .then(function (res) {
-        if(res.data.msg === "SUCCESS")
+        if(res.data.msg === "SUCCESS"){
+          for(i=0;i<res.data.result.length;i++){
+            switch (res.data.result[i].dealtype){
+              case "PAPER":
+                __this.deals[0] = res.data.result[i]
+                break;
+              case "D_SCHOOL":
+                __this.deals[1] = res.data.result[i]
+                break;
+              case "T-SHIRT":
+                __this.deals[2] = res.data.result[i]
+                break;
+              case "MEETING":
+                __this.deals[3] = res.data.result[i]
+                break;
+              default:
+                break;
+            }
+          }
+        }
           __this.deals = res.data.result;
       })
       .catch(function (e) {
-        alert("权限不足")
       })
 
     return {
       deals:[{vomule:"loading"},{vomule:"loading"},{vomule:"loading"},{vomule:"loading"}],
       contacts:[{role:"loading"}],
-      location:location
+      location:location,
+      msgList: [{createtime:0,ownername:"loading",content:"loading..."}]
+    }
+  },
+  methods:{
+    send(){
+      let text = document.getElementsByName("message")[0].value;
+      axios.get("/market/createNoteMessage?content="+text+"&marketid="+this.$route.params.id)
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            location.reload();
+          }
+        })
     }
   }
 }
@@ -91,9 +140,31 @@ export default {
 }
 .class-info>table{
   width: 100%;
+  border-collapse:collapse;
 }
 .class-info>table td{
   border: 1px #ddd solid;
   font-size: 0.8rem;
+}
+.class-info>ul{
+     text-align: left;
+     font-size: 0.8rem;
+     list-style: none;
+    padding: 0;
+ }
+.class-info>ul>li{
+  padding-left: 1rem;
+}
+.class-info input{
+    width: 80%;
+    border: none;
+    border-bottom: solid black 1px;
+    padding-left: 1rem;
+}
+.class-info button{
+    background: #3399cc;
+    color: white;
+    border-radius: 0.25rem;
+    border: none;
 }
 </style>

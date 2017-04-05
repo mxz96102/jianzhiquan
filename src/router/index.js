@@ -22,6 +22,7 @@ import ClassManage from '@/pages/user/Center/Class/ClassManage'
 import ClassInfo from '@/pages/user/Center/Class/ClassInfo'
 import ClassList from '@/pages/user/Center/Class/ClassList'
 import ClassBargin from '@/pages/user/Center/Class/ClassBargin'
+import ClassAdd from '@/pages/user/Center/Class/ClassAdd'
 
 Vue.use(Router)
 
@@ -36,7 +37,15 @@ export default new Router({
       name: 'register',
       component: Register
     },{
+      path: '/register/:phonenum',
+      name: 'register',
+      component: Register
+    },{
       path: '/login',
+      name: 'login',
+      component: Login
+    },{
+      path: '/login/:phonenum',
       name: 'login',
       component: Login
     },{
@@ -72,11 +81,15 @@ export default new Router({
       name: 'jobManage',
       component: JobManage
     },{
-      path: '/class/manage',
+      path: '/class/manage/:id',
       name: 'classManage',
       component: ClassManage
     },{
-      path: '/class/info/:id',
+      path: '/class/add',
+      name: 'classAdd',
+      component: ClassAdd
+    },{
+      path: '/class/info/:id/:name',
       name: 'classInfo',
       component: ClassInfo
     },{
