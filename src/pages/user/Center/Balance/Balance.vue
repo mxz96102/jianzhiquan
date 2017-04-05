@@ -29,7 +29,7 @@
           2016年8月19日 19:08 <span class="balance-type"></span> <span class="balance-list-num">{{item.volume}}元</span>
         </div>
         <div>
-          {{item.discription}}<span class="balance-state">{{state[item.tradestate]}}</span>
+          {{item.discription}}<span class="balance-state">{{allstate[item.tradestate]}}</span>
         </div>
       </li>
     </ul>
@@ -62,7 +62,7 @@ export default {
       infos : [],
       balance : {},
       location : location,
-      state : {
+      allstate : {
         HANDLING:"处理中",
         DONE:"已处理",
         REFUSED:"已拒绝"
