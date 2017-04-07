@@ -29,20 +29,20 @@
 import axios from '@/axios'
 import Navbar from '@/components/navbar'
 
+function getParameterByName(name, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 export default {
   name: '',
-
-  getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-      results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  },
 
   beforeCreate(){
     axios.get('/user/checkUserInfo')
@@ -56,9 +56,11 @@ export default {
         alert("请求错误");
       });
 
-    if(this.getParameterByName("job") !== "") {
-      location.hash = '#/job/info' + this.getParameterByName("job")
+    if(getParameterByName("job") !== "") {
+      location.hash = '#/job/info/' + getParameterByName("job")
     }
+
+
   },
   data () {
     let __this = this;

@@ -22,7 +22,8 @@
         )
 
       return {
-        list:[{name:"Loading ..."}]
+        list:[{name:"Loading ..."}],
+        location:location
       }
     }
   }
