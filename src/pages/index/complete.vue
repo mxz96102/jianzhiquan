@@ -119,10 +119,10 @@ export default {
     toThree(){
       let data = [];
 
-      if(checkValues(getValues('class','dorm','college'),1,4,2)){
+      if(checkValues(getValues('class','dorm'),1,4,2)){
         //document.getElementsByClassName('step-two')[0].className += ' hidden';
         //document.getElementsByClassName('step-three')[0].className = 'step-three';
-        data = getValues('name','qq','gender','class','dorm','grade',"college");
+        data = getValues('name','qq','gender','class','dorm','grade',"colleage");
         axios.get('/user/insertInfo?username='+data[0]+'&qq='+data[1]+'&sex='+data[2]+'&clazz='+data[3]+'&dorm='+data[4]+'&grade='+data[5]+"&colleage="+data[6])
           .then((res)=>{
             if(res.data.msg === "SUCCESS"){
