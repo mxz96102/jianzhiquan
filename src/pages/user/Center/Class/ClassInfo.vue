@@ -83,7 +83,7 @@ export default {
 
     axios.get("/market/getAllDeal?marketid="+__this.$route.params.id)
       .then(function (res) {
-        if(res.data.msg === "SUCCESS"){
+        if(res.data.msg === "SUCCESS"&&res.data.result.length>0){
           for(i=0;i<res.data.result.length;i++){
             switch (res.data.result[i].dealtype){
               case "PAPER":
@@ -102,6 +102,11 @@ export default {
                 break;
             }
           }
+        }else{
+          __this.deals[0].volume = 0;
+          __this.deals[1].volume = 0;
+          __this.deals[2].volume = 0;
+          __this.deals[3].volume = 0;
         }
           __this.deals = res.data.result;
       })

@@ -14,7 +14,7 @@
       <li @click="()=>location.hash='#/balance'">
         钱包余额 <span class="center-list-im">{{num.balance}}元</span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
       </li>
-        <li v-if="parseInt(num.memberNum) !== 0" @click="()=>location.hash='#/center/job/'+result.partyid">
+        <li v-if="this.auth === true" @click="()=>location.hash='#/center/job/'+result.partyid">
             兼职管理 <span class="center-list-im">{{num.memberNum}}个</span><span class="center-list-less">人员/工作管理</span><i class="fa fa-angle-right"></i>
         </li>
         <li  v-if="parseInt(num.colleageNum) !== 0" @click="()=>location.hash='#/class/'">
@@ -59,8 +59,6 @@ export default {
     if(getParameterByName("job") !== ""&&getParameterByName("job") !== null) {
       location.hash = '#/job/info/' + getParameterByName("job")
     }
-
-
   },
   data () {
     let __this = this;
@@ -80,19 +78,25 @@ export default {
 
     axios.get("/user/figures").then((res)=>{
       console.log(res);
-      if(res.data.msg === 'SUCCESS'){
+      if(res.data.msg === 'SUCCESS'&& !!(res.data.result)){
         __this.num = res.data.result;
       }
 
     })
 
     axios.get("/party/partyInfo")
+      .then((res)=>{
+        if(res.data.msg === 'SUCCESS'){
+          __this.partyid = res.data.result.id;
+          __this.auth = true
+        }
+      })
       .catch(function (error) {
         __this.auth = false
       })
 
     return {
-      auth: true,
+      auth: false,
       result:{
         username:"Loading",
         phonenum:"",
