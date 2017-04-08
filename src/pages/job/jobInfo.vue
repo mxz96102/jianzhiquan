@@ -65,8 +65,9 @@ export default {
             location.assign('/?job='+__this.$route.params.id);
           } else if(res.data.msg === 'SUCCESS'){
             alert('申请成功');
+            location.assign('/#/center')
           } else{
-            alert('人数已满或者你已经申请。');
+            alert('人数已满或者你已经申请,或许你的学校和此兼职不符。');
             location.reload()
           }
 
