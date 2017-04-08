@@ -90,28 +90,28 @@ export default {
       .catch(function (e) {
       })
 
-    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=PAPER")
+    axios.get("/market/dealData?marketid="+__this.$route.params.id+"&dealtype=PAPER")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
           __this.deals[0] = res.data.result[0]
           }
       })
 
-    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=D_SCHOOL")
+    axios.get("/market/dealData?marketid="+__this.$route.params.id+"&dealtype=D_SCHOOL")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
           __this.deals[1] = res.data.result[0]
         }
       })
 
-    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=MEETING")
+    axios.get("/market/dealData?marketid="+__this.$route.params.id+"&dealtype=MEETING")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
           __this.deals[2] = res.data.result[0]
         }
       })
 
-    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=T-SHIRT")
+    axios.get("/market/dealData?marketid="+__this.$route.params.id+"&dealtype=T-SHIRT")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
           __this.deals[3] = res.data.result[0]

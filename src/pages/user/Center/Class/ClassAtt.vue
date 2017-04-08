@@ -1,10 +1,10 @@
 <template>
     <div class="class-att">
-        <label>角色:</label><input name="roll" type="text"/><br/>
+        <label>角色:</label><input name="role" type="text"/><br/>
         <label>名字:</label><input name="name" type="text"/><br/>
-        <label>qq:</label><input name="qq" type="text"/>
-        <label>寝室号:</label><input name="dorm" type="text"/>
-        <label>手机号:</label><input name="phonenum" type="text"/>
+        <label>qq:</label><input name="qq" type="text"/><br/>
+        <label>寝室号:</label><input name="dorm" type="text"/><br/>
+        <label>手机号:</label><input name="phonenum" type="text"/><br/>
         <button @click="submit">提交</button>
     </div>
 </template>
