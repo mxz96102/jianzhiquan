@@ -71,6 +71,16 @@ export default {
           location.hash = '/'
         }else
             __this.result = res.data.result;
+        axios.get("/party/partyInfo")
+          .then((res)=>{
+            if(res.data.msg === 'SUCCESS'){
+              __this.result.partyid = res.data.result.id;
+              __this.auth = true
+            }
+          })
+          .catch(function (error) {
+            __this.auth = false
+          })
       })
       .catch(function (error) {
         //alert("请求错误")
@@ -84,16 +94,7 @@ export default {
 
     })
 
-    axios.get("/party/partyInfo")
-      .then((res)=>{
-        if(res.data.msg === 'SUCCESS'){
-          __this.partyid = res.data.result.id;
-          __this.auth = true
-        }
-      })
-      .catch(function (error) {
-        __this.auth = false
-      })
+
 
     return {
       auth: false,

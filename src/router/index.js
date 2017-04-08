@@ -23,6 +23,8 @@ import ClassInfo from '@/pages/user/Center/Class/ClassInfo'
 import ClassList from '@/pages/user/Center/Class/ClassList'
 import ClassBargin from '@/pages/user/Center/Class/ClassBargin'
 import ClassAdd from '@/pages/user/Center/Class/ClassAdd'
+import ClassAtt from '@/pages/user/Center/Class/ClassAtt'
+
 
 Vue.use(Router)
 
@@ -96,6 +98,10 @@ export default new Router({
       path: '/class/bargin/:id/:type',
       name: 'classBargin',
       component: ClassBargin
+    },{
+      path: '/class/att/:id',
+      name: 'classAtt',
+      component: ClassAtt
     },{
       path: '/class/',
       name: 'classList',

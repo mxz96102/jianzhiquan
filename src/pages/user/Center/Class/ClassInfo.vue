@@ -18,6 +18,7 @@
             <td>{{man.dorm}}</td>
         </tr>
     </table>
+    <button @click="()=>location.hash = '#/class/att/'+this.$route.params.id">添加联系人</button>
     <h2>成交数据</h2>
     <table>
       <tr>
@@ -51,14 +52,15 @@
     </table>
       <h2>拜访记录</h2>
       <ul>
-          <li v-for="msg in msgList">
-              <p><i class="fa fa-angle-right"></i>{{(new Date(msg.createtime).toLocaleString()) }}&nbsp;&nbsp;{{ msg.ownername }}</p>
-              <p style="padding-left: 2rem">{{ msg.content }}</p>
-          </li>
           <li >
               <input type="text" name="message" placeholder="新增记录">
               <button @click="send">提交</button>
           </li>
+          <li v-for="msg in msgList">
+              <p><i class="fa fa-angle-right"></i>{{(new Date(msg.createtime).toLocaleString()) }}&nbsp;&nbsp;{{ msg.ownername }}</p>
+              <p style="padding-left: 2rem">{{ msg.content }}</p>
+          </li>
+
       </ul>
   </div>
 </template>
@@ -91,28 +93,28 @@ export default {
     axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=PAPER")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
-          __this.deals[0] = res.data.result
+          __this.deals[0] = res.data.result[0]
           }
       })
 
     axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=D_SCHOOL")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
-          __this.deals[1] = res.data.result
+          __this.deals[1] = res.data.result[0]
         }
       })
 
     axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=MEETING")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
-          __this.deals[2] = res.data.result
+          __this.deals[2] = res.data.result[0]
         }
       })
 
     axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=T-SHIRT")
       .then(function (res) {
         if(res.data.msg === "SUCCESS") {
-          __this.deals[3] = res.data.result
+          __this.deals[3] = res.data.result[0]
         }
       })
 
