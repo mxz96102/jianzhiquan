@@ -34,7 +34,7 @@
             alert('请登录')
             location.hash = '/'
           }else
-            axios.get("/uni/getAvailableColleage")
+            axios.get("/market/getAvailableColleage")
               .then(function (res) {
                 if(res.data.msg === "SUCCESS"){
                   __this.colleageList = res.data.result
