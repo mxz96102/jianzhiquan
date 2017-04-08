@@ -38,7 +38,7 @@
           __this.info = res.data.result;
       }).catch()
 
-    axios.get("/party/allMember?partyid="+this.$route.params.id)
+    axios.get("/party/allMember?id="+this.$route.params.id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS")
           __this.men = res.data.result;
