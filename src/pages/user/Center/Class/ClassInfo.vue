@@ -27,8 +27,15 @@
         <td>聚会</td>
         <td>文化衫</td>
       </tr>
+        <tr>
+            <td>单数</td>
+            <td>{{deals[0].num}}</td>
+            <td>{{deals[1].num}}</td>
+            <td>{{deals[2].num}}</td>
+            <td>{{deals[3].num}}</td>
+        </tr>
       <tr>
-        <td>单数</td>
+        <td>收益</td>
         <td>{{deals[0].vomule}}</td>
         <td>{{deals[1].vomule}}</td>
         <td>{{deals[2].vomule}}</td>
@@ -81,40 +88,36 @@ export default {
       .catch(function (e) {
       })
 
-    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id)
+    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=PAPER")
       .then(function (res) {
-        if(res.data.msg === "SUCCESS"&&res.data.result.length>0){
-          for(i=0;i<res.data.result.length;i++){
-            switch (res.data.result[i].dealtype){
-              case "PAPER":
-                __this.deals[0] = res.data.result[i]
-                break;
-              case "D_SCHOOL":
-                __this.deals[1] = res.data.result[i]
-                break;
-              case "T-SHIRT":
-                __this.deals[2] = res.data.result[i]
-                break;
-              case "MEETING":
-                __this.deals[3] = res.data.result[i]
-                break;
-              default:
-                break;
-            }
+        if(res.data.msg === "SUCCESS") {
+          __this.deals[0] = res.data.result
           }
-        }else{
-          __this.deals[0].volume = 0;
-          __this.deals[1].volume = 0;
-          __this.deals[2].volume = 0;
-          __this.deals[3].volume = 0;
-        }
-          __this.deals = res.data.result;
       })
-      .catch(function (e) {
+
+    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=D_SCHOOL")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS") {
+          __this.deals[1] = res.data.result
+        }
+      })
+
+    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=MEETING")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS") {
+          __this.deals[2] = res.data.result
+        }
+      })
+
+    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id+"&dealtype=T-SHIRT")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS") {
+          __this.deals[3] = res.data.result
+        }
       })
 
     return {
-      deals:[{vomule:"loading"},{vomule:"loading"},{vomule:"loading"},{vomule:"loading"}],
+      deals:[{vomule:"0",num:0},{vomule:"0",num:0},{vomule:"0",num:0},{vomule:"0",num:0}],
       contacts:[{role:"loading"}],
       location:location,
       msgList: [{createtime:0,ownername:"loading",content:"loading..."}]
