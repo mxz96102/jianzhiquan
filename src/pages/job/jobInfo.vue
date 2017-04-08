@@ -49,21 +49,27 @@ export default {
       })
 
     return {
-      job:{}
+      job:{},
+      location : location,
+      history : history
     }
   },
   methods: {
     applyJob(){
+      let __this = this;
+
       axios.get("job/apply?id="+this.$route.params.id)
         .then(function (res) {
           if(res.data.code === '401'){
             alert('请注册或登录')
-            location.href = 'http://job.4nian.cc/?job='+__this.$route.params.id;
+            location.assign('/?job='+__this.$route.params.id);
           } else if(res.data.msg === 'SUCCESS'){
             alert('申请成功');
-          } else
+          } else{
             alert('人数已满或者你已经申请。');
-          location.reload()
+            location.reload()
+          }
+
         })
         .catch(function (error) {
           alert("请求错误")
