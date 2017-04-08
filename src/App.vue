@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <router-view class="main-body"></router-view>
-      <div @Click="()=>history.back()" v-if="$route.path!='/'&&$route.path!='/center'&&$route.path!='/complete'" class="back-button" >
-          <svg version="1.1" class="back-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      <div onClick="history.back()" v-if="$route.path!='/'&&$route.path!='/center'&&$route.path!='/complete'&&$route.path!='/job/list'&&$route.path!='/my/job/list'" class="back-button" >
+          <svg  version="1.1" class="back-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 25 25" style="enable-background:new 0 0 25 25;" xml:space="preserve">
         <circle id="XMLID_1_" class="st0" cx="12.5" cy="12.5" r="11"/>
         <polyline id="XMLID_12_" class="st1" points="8.5,12.6 15.5,6.7 8.5,12.6 15.5,18.4 "/>
