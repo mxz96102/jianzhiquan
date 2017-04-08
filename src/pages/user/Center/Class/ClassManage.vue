@@ -9,14 +9,14 @@
         <td>业务</td>
       </tr>
         <tr v-for="clazz in allclazz">
-            <td class="class-manage-title" @click="()=> location.hash='#/class/info/'+clazz.id+'/'+clazz.marketname">{{clazz.colleage}}</td>
+            <td class="class-manage-title" @click="()=> location.hash='#/class/info/'+clazz.id+'/'+clazz.marketname">{{clazz.colleagename}}</td>
             <td>{{clazz.grade}}</td>
             <td>{{clazz.marketname}}</td>
             <td>{{clazz.attennum}}</td>
             <td>{{clazz.notemessagenum}}</td>
         </tr>
     </table>
-    <button @click="()=>location.hash = '#/class/add'">新增班级</button>
+    <button @click="()=>location.hash = '#/class/add/'+this.$route.params.id">新增班级</button>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
   data () {
     let __this = this;
 
-    axios.get("/market/getAvailableMarket")
+    axios.get("/market/allMarket?colleageid="+this.$route.params.id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS")
           __this.allclazz = res.data.result

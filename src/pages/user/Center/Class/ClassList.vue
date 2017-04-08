@@ -2,7 +2,7 @@
     <div class="class-list">
         <ul>
             <li><h1>学院选择</h1></li>
-            <li v-for="item in list" @click="()=> location.hash = '/class/manage/'+item.id"><h1>{{item.name}}</h1><i class="fa fa-angle-right"></i></li>
+            <li v-for="item in list" @click="()=> location.hash = '/class/manage/'+item.id"><h1>{{item.name}}<span class="class-list-im">{{item.marketNum}}个</span></h1><i class="fa fa-angle-right"></i></li>
         </ul>
     </div>
 </template>
@@ -13,10 +13,12 @@
   export default {
     name: '',
     data () {
+      let __this = this;
+
       axios.get('/market/getAvailableColleage')
         .then(function (res) {
             if(res.data.msg === "SUCCESS"){
-
+              __this.list = res.data.result
             }
           }
         )
@@ -67,5 +69,9 @@
     line-height: 3rem;
     color: #cccccc;
 }
-
+.class-list-im{
+    margin-left: 1.5rem;
+    font-size: 1.2rem;
+    color: #ff3300;
+}
 </style>

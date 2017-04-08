@@ -85,7 +85,7 @@ export default new Router({
       name: 'classManage',
       component: ClassManage
     },{
-      path: '/class/add',
+      path: '/class/add/:id',
       name: 'classAdd',
       component: ClassAdd
     },{
