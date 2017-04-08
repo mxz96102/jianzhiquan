@@ -17,6 +17,7 @@
   export default {
     name: 'balanceCheck',
     data () {
+      let __this = this;
 
       axios.post("user/userInfo")
         .then((res)=>{
