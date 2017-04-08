@@ -64,7 +64,7 @@ export default {
   data () {
     let __this = this,i;
 
-    axios.get("/job/getAllAtten?marketid="+__this.$route.params.id)
+    axios.get("/market/getAllAtten?marketid="+__this.$route.params.id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS")
           __this.contacts = res.data.result;
@@ -73,7 +73,7 @@ export default {
         //alert("权限不足")
       })
 
-    axios.get("/job/getAllNoteMessage?marketid="+__this.$route.params.id)
+    axios.get("/market/getAllNoteMessage?marketid="+__this.$route.params.id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS")
           __this.msgList = res.data.result;
@@ -81,7 +81,7 @@ export default {
       .catch(function (e) {
       })
 
-    axios.get("/job/getAllDeal?marketid="+__this.$route.params.id)
+    axios.get("/market/getAllDeal?marketid="+__this.$route.params.id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){

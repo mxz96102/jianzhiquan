@@ -51,10 +51,10 @@ export default {
         }
       })
 
-    axios.get("/account/tradeList")
+    axios.get("account/accountInfo")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
-          __this.infos = res.data.result;
+          __this.infos = res.data.result.trade;
         }
       })
 

@@ -49,7 +49,7 @@
         let colleage = document.getElementsByName("colleage")[0].value,
           clazz = document.getElementsByName("class")[0].value,
         grade = document.getElementsByName("grade")[0].value;
-        axios.get("/createMarket?colleageid="+colleage.split('-')[0]+"&marketname="+clazz+"&grade="+grade+"&colleage="+colleage.split('-')[1])
+        axios.get("/market/createMarket?colleageid="+colleage.split('-')[0]+"&marketname="+clazz+"&grade="+grade+"&colleage="+colleage.split('-')[1])
           .then(function (res) {
             if(res.data.code === '401'){
               alert('请登录')

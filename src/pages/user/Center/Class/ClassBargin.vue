@@ -24,7 +24,7 @@
         custom = document.getElementsByName("custom")[0].value;
 
 
-        axios.get("/account/transferRequest?volume="+volume+"&discription="+discription+"&custom="+custom+"&marketid="+this.$route.params.id+"&dealtype="+this.$route.params.type)
+        axios.get("/market/createDeal?volume="+volume+"&discription="+discription+"&custom="+custom+"&marketid="+this.$route.params.id+"&dealtype="+this.$route.params.type)
           .then(function (res) {
             if(res.data.code === '401'){
               alert('请登录')
