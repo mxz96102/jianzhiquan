@@ -30,10 +30,10 @@
         <label >年级</label>
           <select class="form-input" name="grade">
               <option value="2013">2013</option>
-              <option value="2013">2014</option>
-              <option value="2013">2015</option>
-              <option value="2013">2016</option>
-              <option value="2013">2017</option>
+              <option value="2014">2014</option>
+              <option value="2015">2015</option>
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
           </select>
           <br/>
         <label >班级</label> <input type="text" name="class" value=""/><br/>
@@ -76,6 +76,7 @@ function checkValues(values, ...length){
 export default {
   name: '',
   data () {
+    let __this = this;
 
     axios.post("user/userInfo")
       .then((res)=>{
@@ -83,13 +84,21 @@ export default {
         if(res.data.code === '401'){
           alert('请登录')
           location.hash = '/'
-        }else
+        }else{
           axios.get("/uni/allColleage?uniid="+res.data.result.uniid)
             .then(function (res) {
               if(res.data.msg === "SUCCESS"){
                 __this.colleageList = res.data.result
               }
             });
+          axios.get("/uni/allDorm?uniid="+res.data.result.uniid)
+            .then(function (res) {
+              if(res.data.msg === "SUCCESS"){
+                __this.dormList = res.data.result
+              }
+            });
+        }
+
       })
 
 
