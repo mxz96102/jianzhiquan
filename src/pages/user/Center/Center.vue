@@ -14,10 +14,10 @@
       <li @click="()=>location.hash='#/balance'">
         钱包余额 <span class="center-list-im">{{num.balance}}元</span><span class="center-list-less">明细/工资/提现</span><i class="fa fa-angle-right"></i>
       </li>
-        <li v-if="result.party !== null" @click="()=>location.hash='#/center/job/'+result.partyid">
+        <li v-if="parseInt(num.memberNum) !== 0" @click="()=>location.hash='#/center/job/'+result.partyid">
             兼职管理 <span class="center-list-im">{{num.memberNum}}个</span><span class="center-list-less">人员/工作管理</span><i class="fa fa-angle-right"></i>
         </li>
-        <li  v-if="result.party !== null" @click="()=>location.hash='#/class/'">
+        <li  v-if="parseInt(num.colleageNum) !== 0" @click="()=>location.hash='#/class/'">
             班级管理 <span class="center-list-im">{{num.colleageNum}}个</span><span class="center-list-less">销售/班级管理</span><i class="fa fa-angle-right"></i>
         </li>
     </ul>
@@ -56,7 +56,7 @@ export default {
         alert("请求错误");
       });
 
-    if(getParameterByName("job") !== "") {
+    if(getParameterByName("job") !== ""&&getParameterByName("job") !== null) {
       location.hash = '#/job/info/' + getParameterByName("job")
     }
 
