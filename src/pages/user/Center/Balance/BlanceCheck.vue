@@ -20,6 +20,7 @@
         discription = document.getElementsByName("discription")[0].value;
 
         if(confirm("金额："+volume+"\n支付宝账号："+discription+"\n你是否确认提现")){
+          discription += '(支付宝账号)-转出';
           axios.get("/account/transferRequest?volume=-"+volume+"&discription="+discription)
             .then(function (res) {
               if(res.data.code === '401'){
