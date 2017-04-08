@@ -30,8 +30,9 @@
   export default {
   name: 'jobManage',
   data () {
+    let __this=this
 
-    axios.get(" /party/partyInfo")
+    axios.get("/party/partyInfo")
       .then(function (res) {
         if(res.data.msg === "SUCCESS")
           __this.info = res.data.result;
