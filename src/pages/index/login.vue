@@ -166,7 +166,7 @@ export default {
   color: white;
   margin-top: 1rem;
 }
-.login-form>button.disable{
+.phone-passwd>button.disable{
   background: #7a8783;
 }
 .phone-passwd>button{

@@ -182,7 +182,7 @@ select.form-input{
   color: white;
   margin-top: 1rem;
 }
-.register-form>button.disable{
+.phone-passwd>button.disable{
   background: #7a8783;
 }
 .phone-passwd>button{
