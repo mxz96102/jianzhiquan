@@ -73,13 +73,13 @@ export default {
             __this.result = res.data.result;
         axios.get("/party/partyInfo")
           .then((res)=>{
-            if(res.data.msg === 'SUCCESS'){
+            if(res.data.msg === 'SUCCESS'&&res.data.result !== null){
               __this.result.partyid = res.data.result.id;
               __this.auth = true
             }
           })
           .catch(function (error) {
-            __this.auth = false
+            //__this.auth = false
           })
       })
       .catch(function (error) {

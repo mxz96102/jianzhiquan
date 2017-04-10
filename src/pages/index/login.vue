@@ -49,6 +49,8 @@ export default {
       }
 
       if(button.innerHTML === '获取验证码'){
+        button.className = "disable";
+
         let counter = ()=>{
           i--;
           button.innerHTML = '请等待' + i + 's';
@@ -56,6 +58,7 @@ export default {
           if(i > 0){
             setTimeout(counter, 1000);
           } else {
+            button.className = "";
             button.innerHTML = '获取验证码';
           }
         }
@@ -162,6 +165,9 @@ export default {
   padding: 0.25rem;
   color: white;
   margin-top: 1rem;
+}
+.login-form>button.disable{
+  background: #7a8783;
 }
 .phone-passwd>button{
   background: #3399cc;

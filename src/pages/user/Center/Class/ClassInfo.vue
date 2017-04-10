@@ -128,12 +128,14 @@ export default {
   methods:{
     send(){
       let text = document.getElementsByName("message")[0].value;
-      axios.get("/market/createNoteMessage?content="+text+"&marketid="+this.$route.params.id)
-        .then(function (res) {
-          if(res.data.msg === "SUCCESS"){
-            location.reload();
-          }
-        })
+
+      if(text.length > 0)
+        axios.get("/market/createNoteMessage?content="+text+"&marketid="+this.$route.params.id)
+          .then(function (res) {
+            if(res.data.msg === "SUCCESS"){
+              location.reload();
+            }
+          })
     }
   }
 }

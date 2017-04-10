@@ -8,7 +8,8 @@
       <input class="form-input" placeholder="请输入手机号码" :value="$route.params.phonenum" type="text" name="phone"/><br/>
 
       <div class="register-complete hidden">
-        <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
+          <input class="form-input" placeholder="请输入密码" type="password" name="passwd" value=""><br/>
+          <input class="form-input" placeholder="请再输入一次密码" type="password" name="passwd" value=""><br/>
         <select class="form-input" name="">
           <option v-for="school in schoolList" :value="school.id">{{school.uniname}}</option>
         </select>
@@ -57,6 +58,8 @@ export default {
       }
 
       if(button.innerHTML === '获取验证码'){
+        button.className = "disable";
+
         let counter = ()=>{
           i--;
           button.innerHTML = '请等待' + i + 's';
@@ -64,6 +67,7 @@ export default {
           if(i > 0){
             setTimeout(counter, 1000);
           } else {
+            button.className = "";
             button.innerHTML = '获取验证码';
           }
         };
@@ -73,7 +77,7 @@ export default {
       }
     },
     nextStep(){
-      let [phonePasswd,passwd,username] = [document.getElementsByClassName('phone-passwd')[0],document.getElementsByClassName('form-input')[1],document.getElementsByClassName('form-input')[0]];
+      let [phonePasswd,passwd,username,passwd2] = [document.getElementsByClassName('phone-passwd')[0],document.getElementsByClassName('form-input')[1],document.getElementsByClassName('form-input')[0],document.getElementsByClassName('form-input')[2]];
       let complete = ()=>{
         let compForm = document.getElementsByClassName('register-complete')[0];
 
@@ -91,16 +95,18 @@ export default {
 
       if(flag){
         if(!!phonePasswd.getElementsByTagName('input')[0].value){
-        //login here
 
           complete();
         } else {
           alert('请输入验证码');
         }
       } else {
-        if(passwd.value.length < 9){
-          alert('密码长度最少是9')
-        } else {
+        if(passwd.value.length < 6){
+          alert('密码最小长度为6位')
+        } else if(passwd.value !== passwd2.value){
+          alert('请检查你重复输入的密码')
+        }
+        else{
           axios.get('auth/register?phonenum=' +username.value +
             '&credential=' +passwd.value +
             '&code=' +phonePasswd.getElementsByTagName('input')[0].value +
@@ -175,6 +181,9 @@ select.form-input{
   padding: 0.25rem;
   color: white;
   margin-top: 1rem;
+}
+.register-form>button.disable{
+  background: #7a8783;
 }
 .phone-passwd>button{
   background: #3399cc;

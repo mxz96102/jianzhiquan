@@ -1,6 +1,11 @@
 <template>
     <div class="class-att">
-        <label>角色:</label><input name="role" type="text"/><br/>
+        <label>角色:</label>
+        <select name="role">
+            <option value="班长">班长</option>
+            <option value="学委">学委</option>
+            <option value="同学">同学</option>
+        </select>
         <label>名字:</label><input name="name" type="text"/><br/>
         <label>qq:</label><input name="qq" type="text"/><br/>
         <label>寝室号:</label><input name="dorm" type="text"/><br/>
