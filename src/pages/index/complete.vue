@@ -105,7 +105,7 @@ export default {
 
 
 
-    return {colleageList:[],dormList:[]}
+    return {colleageList:[],dormList:[],userid:100}
   },
   methods: {
     toOne(){
