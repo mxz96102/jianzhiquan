@@ -4,7 +4,7 @@
     <div class="step-zero">
       <p>
        欢迎你 <br/>
-       你是第 {{userid}} 位加入兼职圈的同学<br/>
+       你是第 {{user.id}} 位加入兼职圈的同学<br/>
        完善信息才能做兼职哦
       </p>
       <button @click="toOne" type="button">去完善信息</button>
@@ -81,12 +81,13 @@ export default {
 
     axios.post("user/userInfo")
       .then((res)=>{
-        console.log(res);
+
         if(res.data.code === '401'){
           alert('请登录')
           location.hash = '/'
         }else{
-          __this.userid = res.data.result.id;
+          window.console.log(res.data.result.id);
+          __this.user = res.data.result;
           axios.get("/uni/allColleage?uniid="+res.data.result.uniid)
             .then(function (res) {
               if(res.data.msg === "SUCCESS"){
@@ -105,7 +106,7 @@ export default {
 
 
 
-    return {colleageList:[],dormList:[],userid:100}
+    return {colleageList:[],dormList:[],user:{}}
   },
   methods: {
     toOne(){
