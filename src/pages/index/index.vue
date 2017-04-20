@@ -14,8 +14,42 @@
 <script>
 import axios from '@/axios'
 
+function is_weixn(){
+  let ua = navigator.userAgent.toLowerCase();
+  if(ua.match(/MicroMessenger/i)=="micromessenger") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function getParameterByName(name, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 export default {
   name: 'index',
+  created(){
+    /*if(is_weixn()){
+      if(getParameterByName('code')!== null&&getParameterByName('code')!==''){
+        axios.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid="+"&secret="+"&code="+getParameterByName('code')+"&grant_type=authorization_code")
+          .then(function (res) {
+            
+          })
+      }else{
+        window.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+"&redirect_uri="+"&response_type=code&scope=SCOPE&state=STATE#wechat_redirect"
+      }
+    }*/
+  }
+  ,
   data () {
     return {}
   },

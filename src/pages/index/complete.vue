@@ -37,11 +37,12 @@
           </select>
           <br/>
         <label >班级</label> <input type="text" name="class" value=""/><br/>
-        <label >宿舍</label>
+        <label >校区</label>
           <select class="form-input" name="dorm">
               <option v-for="dorm in dormList" :value="dorm.dormname">{{dorm.dormname}}</option>
           </select>
           <br/>
+          <label >宿舍</label> <input type="text" name="area" placeholder="宿舍栋-房间号" value=""/><br/>
       </div>
       <button @click="toThree" type="button">提交</button>
     </div>
@@ -119,17 +120,17 @@ export default {
     toThree(){
       let data = [];
 
-      if(checkValues(getValues('class','dorm'),1,4,2)){
+      if(checkValues(getValues('class','area'),1,4,2)){
         //document.getElementsByClassName('step-two')[0].className += ' hidden';
         //document.getElementsByClassName('step-three')[0].className = 'step-three';
-        data = getValues('name','qq','gender','class','dorm','grade',"colleage");
-        axios.get('/user/insertInfo?username='+data[0]+'&qq='+data[1]+'&sex='+data[2]+'&clazz='+data[3]+'&dorm='+data[4]+'&grade='+data[5]+"&colleage="+data[6])
+        data = getValues('name','qq','gender','class','dorm','grade',"colleage","area");
+        axios.get('/user/insertInfo?username='+data[0]+'&qq='+data[1]+'&sex='+data[2]+'&clazz='+data[3]+'&dorm='+data[4]+'&grade='+data[5]+"&colleage="+data[6]+"&area="+data[7])
           .then((res)=>{
             if(res.data.msg === "SUCCESS"){
               location.hash = '/center'
             }else {
               alert('信息错误，请重试');
-              //location.reload()
+              location.reload()
             }
           })
           .catch((error)=>{alert('请求错误')})
