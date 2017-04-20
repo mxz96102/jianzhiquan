@@ -86,7 +86,7 @@ export default {
           alert('请登录')
           location.hash = '/'
         }else{
-          __this.userid = res.data.id;
+          __this.userid = res.data.result.id;
           axios.get("/uni/allColleage?uniid="+res.data.result.uniid)
             .then(function (res) {
               if(res.data.msg === "SUCCESS"){
