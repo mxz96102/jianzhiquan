@@ -6,7 +6,7 @@
                     {{job.jobname}}
       </div>
                 <div class="job-list-state">
-                    时间：{{(new Date(job.fromtime)).toLocaleString()}} &nbsp; &nbsp; <span>{{state[job.salary]}}</span>
+                    时间：{{(new Date(job.fromtime)).toLocaleString()}} &nbsp; &nbsp; <span>{{state[job.jobstate]}}</span>
                 </div>
             </li>
         </ul>

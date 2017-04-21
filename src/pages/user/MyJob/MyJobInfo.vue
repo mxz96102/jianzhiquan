@@ -8,6 +8,9 @@
                 <div class="job-info-title">工作日期</div><div class="job-info-content">从{{(new Date(job.fromtime)).toLocaleDateString()}}到{{(new Date(job.untiltime)).toLocaleDateString()}}</div>
             </li>
             <li>
+                <div class="job-info-title">工资待遇</div><div class="job-info-content">{{job.description}}</div>
+            </li>
+            <li>
                 <div class="job-info-title">兼职时段</div><div class="job-info-content">{{job.time}}</div>
             </li>
             <li>
@@ -15,9 +18,6 @@
             </li>
             <li>
                 <div class="job-info-title">招聘人数</div><div class="job-info-content">{{job.workernumnow}}/{{job.workernummax}}人</div>
-            </li>
-            <li>
-                <div class="job-info-title">工作任务</div><div class="job-info-content">{{job.description}}</div>
             </li>
             <li>
                 <div class="job-info-title">工作要求</div><div class="job-info-content">{{job.request}}</div>
